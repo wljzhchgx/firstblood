@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:coc="http://localhost:58080/roma/beans/coc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-autowire="byName">
+    <!-- ======================================================================== -->
+    <!--  数据源定义。                                                    -->
+    <!-- ======================================================================== -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="validationQuery"><value>select 1 from dual</value></property>
+		<property name="url"><value>${firstblood.dal.datasource.url}</value></property>
+		<property name="username"><value>${firstblood.dal.datasource.username}</value></property>
+		<property name="password"><value>${firstblood.dal.datasource.password}</value></property>
+		<property name="initialSize"><value>${firstblood.dal.datasource.initialSize}</value></property>
+		<property name="minIdle"><value>${firstblood.dal.datasource.minIdle}</value></property>
+		<property name="maxIdle"><value>${firstblood.dal.datasource.maxIdle}</value></property>
+		<property name="maxActive"><value>${firstblood.dal.datasource.maxActive}</value></property>
+		<property name="maxWait"><value>${firstblood.dal.datasource.maxWait}</value></property>
+		<property name="testOnBorrow"><value>${firstblood.dal.datasource.testOnBorrow}</value></property>
+		<property name="testWhileIdle"><value>${firstblood.dal.datasource.testWhileIdle}</value></property>
+		<property name="timeBetweenEvictionRunsMillis"><value>${firstblood.dal.datasource.timeBetweenEvictionRunsMillis}</value></property>
+		<property name="numTestsPerEvictionRun"><value>${firstblood.dal.datasource.numTestsPerEvictionRun}</value></property>
+		<property name="minEvictableIdleTimeMillis"><value>${firstblood.dal.datasource.minEvictableIdleTimeMillis}</value></property>
+    </bean>
+
+    <!-- ======================================================================== -->
+    <!--  iBatis SQL map定义。                                                    -->
+    <!-- ======================================================================== -->
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocations">
+			<list>
+				<value>classpath:/META-INF/spring/firstblood-dal-sqlmap-config.xml</value>
+			</list>
+		</property>
+	</bean>
+    <bean id="sqlMapTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+    <!-- ======================================================================== -->
+    <!--  transaction 定义。                                                      -->
+    <!-- ======================================================================== -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate"/>
+
+    <bean id="transactionNewTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="propagationBehavior" value="3"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- 声明事务管理器 -->
+	<tx:annotation-driven transaction-manager="transactionManager"	order="5" />
+</beans>

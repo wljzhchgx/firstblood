@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Application">
+
+	<typeAlias alias="ApplicationDO" type="cn.net.firstblood.dal.model.ApplicationDO"/>
+	<typeAlias alias="ApplicationParam" type="cn.net.firstblood.dal.param.ApplicationParam"/>
+	
+	<resultMap class="ApplicationDO" id="ApplicationDOResult">   
+		<result column="ID" 					property="id"/>
+		<result column="CREATOR" 				property="creator"/>
+		<result column="GMT_CREATE" 			property="gmtCreate"/>
+		<result column="MODIFIER" 				property="modifier"/>
+		<result column="GMT_MODIFIED" 			property="gmtModified"/>
+		<result column="NAME" 					property="name"/>
+		<result column="SEX" 					property="sex"/>
+		<result column="AGE" 					property="age"/>
+		<result column="QQ" 					property="qq"/>
+		<result column="PHONE" 					property="phone"/>
+		<result column="EMAIL" 					property="email"/>
+		<result column="ADDRESS" 				property="address"/>
+		<result column="MESSAGE" 				property="message"/>
+	</resultMap>
+	
+	<sql id="tableFields">
+		ID,
+	    CREATOR,
+	    GMT_CREATE,
+	    MODIFIER,
+	    GMT_MODIFIED,
+	    NAME,
+	    SEX,
+	    AGE,
+	    QQ,
+	    PHONE,
+	    EMAIL,
+	    ADDRESS,
+	    MESSAGE
+   	</sql>
+
+	<sql id="conditionSQL">
+   		<dynamic prepend="WHERE">
+   			<isNotEmpty prepend="AND" property="phone">
+	          	PHONE = #phone#
+			</isNotEmpty>
+		</dynamic>
+   	</sql>
+   	
+	<insert id="insert" parameterClass="ApplicationDO">
+		    INSERT INTO ZS_APPLICATION
+		    (
+				CREATOR,
+			    GMT_CREATE,
+			    MODIFIER,
+			    GMT_MODIFIED,
+			    NAME,
+			    SEX,
+			    AGE,
+			    QQ,
+			    PHONE,
+			    EMAIL,
+			    ADDRESS,
+			    MESSAGE
+	    	)
+	    	VALUES
+	    	(
+				#creator# ,
+				now() ,
+				#modifier# ,
+				now() ,
+				#name#,
+			    #sex#,
+			    #age#,
+			    #qq#,
+			    #phone#,
+			    #email#,
+			    #address#,
+			    #message#
+		    )
+		    <selectKey resultClass="java.lang.Long" keyProperty="id">
+		        SELECT LAST_INSERT_ID()
+		   	</selectKey>
+	</insert>
+	
+   	<update id="update" parameterClass="ApplicationDO">
+		UPDATE ZS_APPLICATION
+	    SET
+	    	<isNotEmpty property="name">
+		    NAME = #name# ,
+		    </isNotEmpty>
+		    GMT_UPDATE = SYSDATE
+    	WHERE ID = #id#   
+	</update>
+
+	<select id="getById" parameterClass="java.lang.Long" resultMap="ApplicationDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM ZS_APPLICATION 
+		WHERE ID = #id#   
+   	</select>
+   	
+   	
+   	<select id="queryByParam" parameterClass="ApplicationParam" resultMap="ApplicationDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM ZS_APPLICATION 
+		<include refid="conditionSQL"/>
+		ORDER BY ID DESC
+		LIMIT #mySqlStartIndex#,#mySqlLength#
+   	</select>
+
+   	<select id="countByParam" parameterClass="ApplicationParam" resultClass="java.lang.Integer">
+   		SELECT 
+      		COUNT(*)
+		FROM ZS_APPLICATION 
+		<include refid="conditionSQL"/>
+   	</select>
+</sqlMap>

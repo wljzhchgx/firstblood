@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration debug="false">
+    <!-- ===================================================================== -->
+    <!--  以下是appender的定义                                                 -->
+    <!-- ===================================================================== -->
+    <appender name="PROJECT-DEBUG" class="ch.qos.logback.core.ConsoleAppender">
+    	<target>System.out</target>
+    	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss} %t %-5p %c{50} -- %C %M %L %m %X{lessContextAttribute} %n</pattern>
+	        <charset>UTF-8</charset>
+    	</encoder>
+    </appender>
+    
+    <appender name="ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>D:/temp/logs/firstblood/all.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/temp/logs/firstblood/all.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+	    </rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss} %t %-5p %c{50} -- %C %M %L %m %X{lessContextAttribute} %n</pattern>
+	        <charset>UTF-8</charset>
+    	</encoder>
+    </appender>
+    
+    <appender name="COMMON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>D:/temp/logs/firstblood/common/common.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/temp/logs/firstblood/common/common.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+	    </rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss} %t %-5p %c{50} -- %C %M %L %m %X{lessContextAttribute} %n</pattern>
+	        <charset>UTF-8</charset>
+    	</encoder>
+    </appender>
+    <!-- ===================================================================== -->
+    <!--  异步日志开始                                                                                                      -->
+    <!-- ===================================================================== -->
+    <appender name="ASYNC_ALL" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ALL" />
+    </appender>
+	<appender name="ASYNC_COMMON" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="COMMON" />
+    </appender>
+    <!-- ===================================================================== -->
+    <!--  logger的定义                                                    -->
+    <!-- ===================================================================== -->
+    <logger name="common" additivity="true">
+         <level value="INFO"/>
+         <appender-ref ref="ASYNC_COMMON"/>
+    </logger>
+    <!-- ===================================================================== -->
+    <!--  Root logger的定义                                                    -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="info"/>
+        <appender-ref ref="PROJECT-DEBUG"/>
+        <appender-ref ref="ASYNC_ALL"/>
+    </root>
+</configuration>
