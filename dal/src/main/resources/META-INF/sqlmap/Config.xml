@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Config">
+
+	<typeAlias alias="ConfigDO" type="cn.net.firstblood.dal.model.ConfigDO"/>
+	<typeAlias alias="ConfigParam" type="cn.net.firstblood.dal.param.ConfigParam"/>
+	
+	<resultMap class="ConfigDO" id="ConfigDOResult">   
+		<result column="ID" 					property="id"/>
+		<result column="CREATOR" 				property="creator"/>
+		<result column="GMT_CREATE" 			property="gmtCreate"/>
+		<result column="MODIFIER" 				property="modifier"/>
+		<result column="GMT_MODIFIED" 			property="gmtModified"/>
+		<result column="TYPE" 					property="type"/>
+		<result column="CONTEXT" 				property="context"/>
+	</resultMap>
+	
+	<sql id="tableFields">
+		ID,
+	    CREATOR,
+	    GMT_CREATE,
+	    MODIFIER,
+	    GMT_MODIFIED,
+	    TYPE,
+	    CONTEXT
+   	</sql>
+
+	<sql id="conditionSQL">
+   		<dynamic prepend="WHERE">
+   			<isNotEmpty prepend="AND" property="type">
+	          	TYPE = #type#
+			</isNotEmpty>
+		</dynamic>
+   	</sql>
+   	
+	<insert id="insert" parameterClass="ConfigDO">
+		    INSERT INTO FB_CONFIG
+		    (
+				CREATOR,
+			    GMT_CREATE,
+			    MODIFIER,
+			    GMT_MODIFIED,
+			    TYPE,
+			    CONTEXT
+	    	)
+	    	VALUES
+	    	(
+				#creator# ,
+				now() ,
+				#modifier# ,
+				now() ,
+				#type#,
+			    #context#
+		    )
+		    <selectKey resultClass="java.lang.Long" keyProperty="id">
+		        SELECT LAST_INSERT_ID()
+		   	</selectKey>
+	</insert>
+	
+   	<update id="update" parameterClass="ConfigDO">
+		UPDATE FB_CONFIG
+	    SET
+	    	<isNotEmpty property="context">
+		    CONTEXT = #context#,
+		    </isNotEmpty>
+		    GMT_MODIFIED = now()
+    	WHERE ID = #id#   
+	</update>
+
+	<select id="getById" parameterClass="java.lang.Long" resultMap="ConfigDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_CONFIG 
+		WHERE ID = #id#   
+   	</select>
+   	
+   	<select id="queryByParam" parameterClass="ConfigParam" resultMap="ConfigDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_CONFIG 
+		<include refid="conditionSQL"/>
+		<isNotEmpty property="orderField"  prepend="order by">
+	     	$orderField$
+	     	<isNotEmpty property="dir"  prepend=" ">
+	     	$dir$
+	     	</isNotEmpty>
+	     	,ID ASC
+	    </isNotEmpty>
+	    <isEmpty property="orderField"  prepend="order by">
+			ID DESC
+	    </isEmpty>
+		LIMIT #mySqlStartIndex#,#mySqlLength#
+   	</select>
+
+   	<select id="countByParam" parameterClass="ConfigParam" resultClass="java.lang.Integer">
+   		SELECT 
+      		COUNT(*)
+		FROM FB_CONFIG 
+		<include refid="conditionSQL"/>
+   	</select>
+</sqlMap>

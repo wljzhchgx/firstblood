@@ -12,10 +12,10 @@
     </appender>
     
     <appender name="ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    	<file>D:/temp/logs/firstblood/all.log</file>
+    	<file>/home/admin/logs/firstblood/all.log</file>
 		<append>true</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>D:/temp/logs/firstblood/all.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/home/admin/logs/firstblood/all.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 	    </rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -25,10 +25,10 @@
     </appender>
     
     <appender name="COMMON" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    	<file>D:/temp/logs/firstblood/common/common.log</file>
+    	<file>/home/admin/logs/firstblood/common/common.log</file>
 		<append>true</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>D:/temp/logs/firstblood/common/common.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/home/admin/logs/firstblood/common/common.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 	    </rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -50,14 +50,14 @@
     <!-- ===================================================================== -->
     <logger name="common" additivity="true">
          <level value="INFO"/>
-         <appender-ref ref="ASYNC_COMMON"/>
+         <appender-ref ref="COMMON"/>
     </logger>
     <!-- ===================================================================== -->
     <!--  Root logger的定义                                                    -->
     <!-- ===================================================================== -->
     <root>
         <level value="info"/>
-        <appender-ref ref="PROJECT-DEBUG"/>
-        <appender-ref ref="ASYNC_ALL"/>
+        <!-- <appender-ref ref="PROJECT-DEBUG"/> -->
+        <appender-ref ref="ALL"/>
     </root>
 </configuration>

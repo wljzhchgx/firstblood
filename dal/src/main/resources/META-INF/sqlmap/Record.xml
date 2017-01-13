@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Record">
+
+	<typeAlias alias="RecordDO" type="cn.net.firstblood.dal.model.RecordDO"/>
+	<typeAlias alias="RecordParam" type="cn.net.firstblood.dal.param.RecordParam"/>
+	
+	<resultMap class="RecordDO" id="RecordDOResult">   
+		<result column="ID" 					property="id"/>
+		<result column="CREATOR" 				property="creator"/>
+		<result column="GMT_CREATE" 			property="gmtCreate"/>
+		<result column="MODIFIER" 				property="modifier"/>
+		<result column="GMT_MODIFIED" 			property="gmtModified"/>
+		<result column="TYPE" 					property="type"/>
+		<result column="VALUE" 					property="value"/>
+	</resultMap>
+	
+	<sql id="tableFields">
+		ID,
+	    CREATOR,
+	    GMT_CREATE,
+	    MODIFIER,
+	    GMT_MODIFIED,
+	    TYPE,
+	    VALUE
+   	</sql>
+
+	<sql id="conditionSQL">
+   		<dynamic prepend="WHERE">
+   			<isNotEmpty prepend="AND" property="type">
+	          	TYPE = #type#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="gmtCreate">
+	          	GMT_CREATE = #gmtCreate#
+			</isNotEmpty>
+			<isNotEmpty property="gmtCreateList" prepend="and">
+	            GMT_CREATE IN <iterate open="(" close=")" conjunction="," property="gmtCreateList">#gmtCreateList[]#</iterate>
+			</isNotEmpty>
+		</dynamic>
+   	</sql>
+   	
+	<insert id="insert" parameterClass="RecordDO">
+		    INSERT INTO FB_RECORD
+		    (
+				CREATOR,
+			    GMT_CREATE,
+			    MODIFIER,
+			    GMT_MODIFIED,
+			    TYPE,
+			    VALUE
+	    	)
+	    	VALUES
+	    	(
+				#creator# ,
+				now() ,
+				#modifier# ,
+				now() ,
+				#type#,
+			    #value#
+		    )
+		    <selectKey resultClass="java.lang.Long" keyProperty="id">
+		        SELECT LAST_INSERT_ID()
+		   	</selectKey>
+	</insert>
+	
+   	<update id="update" parameterClass="RecordDO">
+		UPDATE FB_RECORD
+	    SET
+		    GMT_MODIFIED = now()
+    	WHERE ID = #id#   
+	</update>
+
+	<select id="getById" parameterClass="java.lang.Long" resultMap="RecordDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_RECORD 
+		WHERE ID = #id#   
+   	</select>
+   	
+   	
+   	<select id="queryByParam" parameterClass="RecordParam" resultMap="RecordDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_RECORD 
+		<include refid="conditionSQL"/>
+		<isNotEmpty property="orderField"  prepend="order by">
+	     	$orderField$
+	     	<isNotEmpty property="dir"  prepend=" ">
+	     	$dir$
+	     	</isNotEmpty>
+	     	,ID ASC
+	    </isNotEmpty>
+	    <isEmpty property="orderField"  prepend="order by">
+			ID DESC
+	    </isEmpty>
+		LIMIT #mySqlStartIndex#,#mySqlLength#
+   	</select>
+
+   	<select id="countByParam" parameterClass="RecordParam" resultClass="java.lang.Integer">
+   		SELECT 
+      		COUNT(*)
+		FROM FB_RECORD 
+		<include refid="conditionSQL"/>
+   	</select>
+</sqlMap>

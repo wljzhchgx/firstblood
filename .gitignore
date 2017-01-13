@@ -38,3 +38,5 @@ web/target
 framework/target
 
 target
+
+.DS_Store

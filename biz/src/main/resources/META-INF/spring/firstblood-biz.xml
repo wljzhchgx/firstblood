@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans default-autowire="byName"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd" 
+     > 
+    <import resource="classpath:META-INF/spring/firstblood-biz-cjb.xml"/>
+    <import resource="classpath:META-INF/spring/firstblood-biz-wjs.xml"/>
+    <import resource="classpath:META-INF/spring/firstblood-biz-zcb.xml"/>
+    <import resource="classpath:META-INF/spring/firstblood-biz-grail.xml"/>
+    <import resource="classpath:META-INF/spring/firstblood-biz-cmd.xml"/>
+	<!-- 
+	<bean id="fbScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="startupDelay" value="10"/>
+		<property name="autoStartup" value="true"/> 
+		<property name="configLocation" value="classpath:/META-INF/conf/firstblood-quartz.properties"/>
+		<property name="triggers">
+			<list>
+				<ref bean="checkZcbJobTrigger" />
+				<ref bean="qQReceiveJobTrigger" />
+				<ref bean="weChatReceiveJobTrigger" />	
+				<ref bean="recordJobTrigger" />
+				<ref bean="checkWjsJobTrigger" />
+				<ref bean="notifyJobTrigger" />
+			</list>
+		</property>
+	</bean> -->
+	
+	<bean id="configLoadTask" 		class="cn.net.firstblood.biz.common.task.ConfigLoadTask" 	init-method="init"/>
+	<bean id="accessTokenTask" 		class="cn.net.firstblood.biz.common.task.AccessTokenTask" 	init-method="init"/>
+	
+   
+	<bean id="checkZcbJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="checkZcbJob" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
+	</bean>
+	<bean name="checkZcbJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="cn.net.firstblood.biz.job.CheckZcbJob" />
+	</bean>
+	<!-- 记录 -->
+	<bean id="recordJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="recordJob" />
+		<property name="cronExpression" value="0 0/1 * * * ? " />
+	</bean>
+	<bean name="recordJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="cn.net.firstblood.biz.job.RecordJob" />
+	</bean>
+	<!-- QQ -->
+	<bean id="qQReceiveJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="qQReceiveJob" />
+		<property name="cronExpression" value="0/60 * * * * ?" />
+	</bean>
+	<bean name="qQReceiveJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="cn.net.firstblood.biz.job.QQReceiveJob" />
+	</bean>
+	<!-- 微信 -->
+	<bean id="weChatReceiveJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="weChatReceiveJob" />
+		<property name="cronExpression" value="0/30 * * * * ?" />
+	</bean>
+	<bean name="weChatReceiveJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="cn.net.firstblood.biz.job.WeChatReceiveJob" />
+	</bean>
+	
+	
+</beans>

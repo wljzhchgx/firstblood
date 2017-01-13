@@ -4,5 +4,7 @@
 	<settings defaultStatementTimeout="10" cacheModelsEnabled="true" enhancementEnabled="false" lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000" maxTransactions="3000" useStatementNamespaces="true"/>
 
 	<sqlMap resource="META-INF/sqlmap/Application.xml" />
+	<sqlMap resource="META-INF/sqlmap/Record.xml" />
+	<sqlMap resource="META-INF/sqlmap/Config.xml" />
 
 </sqlMapConfig>

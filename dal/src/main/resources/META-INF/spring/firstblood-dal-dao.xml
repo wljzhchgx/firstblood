@@ -9,6 +9,8 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
     ">
 	
-	<bean id="applicationDao"                 class="cn.net.firstblood.dal.dao.impl.ApplicationDaoImpl"/>
+	<bean id="applicationDao"                 	class="cn.net.firstblood.dal.dao.impl.ApplicationDaoImpl"/>
+	<bean id="recordDao"                 		class="cn.net.firstblood.dal.dao.impl.RecordDaoImpl"/>
+	<bean id="configDao"                 		class="cn.net.firstblood.dal.dao.impl.ConfigDaoImpl"/>
 	
 </beans>

@@ -22,4 +22,6 @@
 	<import resource="classpath:META-INF/spring/firstblood-framework.xml"/>
     <!-- dal层服务 -->
 	<import resource="classpath:META-INF/spring/firstblood-dal.xml"/>
+	<!-- biz层服务 -->
+	<import resource="classpath:META-INF/spring/firstblood-biz.xml"/>
 </beans>
