@@ -7,11 +7,12 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>firstblood.web</artifactId>
-	<version>${project.parent.version}</version>
+	<version>1.0.0</version>
 	<name>firstblood.web[war]</name>
 	<packaging>war</packaging>
 
 	<build>
+		<defaultGoal>compile</defaultGoal>
 		<finalName>firstblood</finalName>
 		<plugins>
 			<plugin>
@@ -44,7 +45,7 @@
 			<dependency>
 				<groupId>com.chgx.app</groupId>
 				<artifactId>firstblood.biz</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 			    <groupId>org.apache.tiles</groupId>
