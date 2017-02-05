@@ -12,6 +12,7 @@ import org.quartz.StatefulJob;
 
 import cn.net.firstblood.biz.model.ZcbPO;
 import cn.net.firstblood.dal.enums.RecordType;
+import cn.net.firstblood.framework.enums.WeChatMsgType;
 import cn.net.firstblood.framework.notifier.QQIM;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.util.HttpClientUtil;
@@ -59,7 +60,7 @@ public class CheckZcbJob implements StatefulJob {
 					QQIM.notify(notifyMsg);
 				}
 				if(zcb.getIsWeChatNotify()){
-					WeChatIM.notify(notifyMsg);
+					WeChatIM.notify(notifyMsg,WeChatMsgType.TEXT);
 				}
 			}
 		}catch(Exception e){

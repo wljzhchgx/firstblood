@@ -8,6 +8,8 @@ import java.math.RoundingMode;
 import java.util.Date;
 import java.util.Map;
 
+import cn.net.firstblood.dal.model.GrailRecordDO;
+import cn.net.firstblood.framework.util.DateUtil;
 import cn.net.firstblood.framework.util.HttpClientUtil;
 import cn.net.firstblood.framework.util.JsonUtil;
 import cn.net.firstblood.framework.util.LoggerUtil;
@@ -49,10 +51,21 @@ public class GrailTool {
 	 * @return
 	 */
 	public static String getHuSS(){
+		return getHuSS("sh000001","上证综合指数");
+	}
+	
+	/**
+	 * 上证
+	 * @param code sh000001
+	 * @param desc 上证综合指数
+	 * @return
+	 */
+	public static String getHuSS(String code,String desc){
 		try{
 			//var hq_str_s_sh000001="上证指数,3590.032,67.213,1.91,4291670,54328220";
-			String result = HttpClientUtil.doGet("http://hq.sinajs.cn/rn="+new Date().getTime()+"&list=s_sh000001",HttpClientUtil.GBK);
-			LoggerUtil.COMMON.info("上证[result:"+result+"]");
+			//String result = HttpClientUtil.doGet("http://hq.sinajs.cn/rn="+new Date().getTime()+"&list=s_sh000001",HttpClientUtil.GBK);
+			String result = HttpClientUtil.doGet("http://hq.sinajs.cn/rn="+new Date().getTime()+"&list=s_"+code,HttpClientUtil.GBK);
+			LoggerUtil.COMMON.info(desc+"[result:"+result+"]");
 			String[] resultArray = result.substring(result.indexOf("\"")+1, result.lastIndexOf("\"")).trim().split(",");
 			String msg1 = "";
 			if(new BigDecimal(resultArray[2]).compareTo(BigDecimal.ZERO) > -1){
@@ -62,13 +75,51 @@ public class GrailTool {
 			}
 			BigDecimal hands = new BigDecimal(resultArray[4]).divide(new BigDecimal("1000000")).setScale(2, RoundingMode.HALF_UP);
 			BigDecimal amt = new BigDecimal(resultArray[5]).divide(new BigDecimal("10000")).setScale(2, RoundingMode.HALF_UP);
-			String msg = "[上证指数:"+resultArray[1]+"]["+msg1+":"+resultArray[2]+","+resultArray[3]+"%]"
+			String msg = "["+desc+":"+resultArray[1]+"]["+msg1+":"+resultArray[2]+","+resultArray[3]+"%]"
 					+ "[成交量:"+hands+"亿手]"
 					+ "[成交额:"+amt+"亿元]"+"[均价:"+amt.divide(hands,2,RoundingMode.HALF_UP)+"元/手]";
 			LoggerUtil.COMMON.info(msg);
 			return msg;
 		}catch(Exception e){
-			LoggerUtil.COMMON.error("上证异常",e);
+			LoggerUtil.COMMON.error(desc+"异常",e);
+		}
+		return null;
+	}
+	
+	public static GrailRecordDO getGrailDO(String code,String desc){
+		
+		try{
+			//var hq_str_s_sh000001="上证指数,3590.032,67.213,1.91,4291670,54328220";
+			//String result = HttpClientUtil.doGet("http://hq.sinajs.cn/rn="+new Date().getTime()+"&list=s_sh000001",HttpClientUtil.GBK);
+			String result = HttpClientUtil.doGet("http://hq.sinajs.cn/rn="+new Date().getTime()+"&list=s_"+code,HttpClientUtil.GBK);
+			LoggerUtil.COMMON.info(desc+"[result:"+result+"]");
+			String[] resultArray = result.substring(result.indexOf("\"")+1, result.lastIndexOf("\"")).trim().split(",");
+			String msg1 = "";
+			if(new BigDecimal(resultArray[2]).compareTo(BigDecimal.ZERO) > -1){
+				msg1 = "涨";
+			}else{
+				msg1 = "跌";
+			}
+			BigDecimal hands = new BigDecimal(resultArray[4]).divide(new BigDecimal("1000000")).setScale(2, RoundingMode.HALF_UP);
+			BigDecimal amt = new BigDecimal(resultArray[5]).divide(new BigDecimal("10000")).setScale(2, RoundingMode.HALF_UP);
+			String msg = "["+desc+":"+resultArray[1]+"]["+msg1+":"+resultArray[2]+","+resultArray[3]+"%]"
+					+ "[成交量:"+hands+"亿手]"
+					+ "[成交额:"+amt+"亿元]"+"[均价:"+amt.divide(hands,2,RoundingMode.HALF_UP)+"元/手]";
+			LoggerUtil.COMMON.info(msg);
+			
+			GrailRecordDO grailRecord = new GrailRecordDO();
+			grailRecord.setCode(code);
+			grailRecord.setDate(DateUtil.format(DateUtil.getMorning(DateUtil.getCurrentTime())));
+			grailRecord.setDealAmt(amt.doubleValue());
+			grailRecord.setDealHands(hands.doubleValue());
+			grailRecord.setDesc(desc);
+			grailRecord.setFloatRate(Double.valueOf(resultArray[3]));
+			grailRecord.setFloatValue(Double.valueOf(resultArray[2]));
+			grailRecord.setValue(Double.valueOf(resultArray[1]));
+			grailRecord.setAvgValue(amt.divide(hands,2,RoundingMode.HALF_UP).doubleValue());
+			return grailRecord;
+		}catch(Exception e){
+			LoggerUtil.COMMON.error(desc+"异常",e);
 		}
 		return null;
 	}

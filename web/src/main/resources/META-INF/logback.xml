@@ -57,7 +57,7 @@
     <!-- ===================================================================== -->
     <root>
         <level value="info"/>
-        <!-- <appender-ref ref="PROJECT-DEBUG"/> -->
+        <appender-ref ref="PROJECT-DEBUG"/>
         <appender-ref ref="ALL"/>
     </root>
 </configuration>

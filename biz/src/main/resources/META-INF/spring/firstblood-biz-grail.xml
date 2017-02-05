@@ -20,4 +20,12 @@
 	<bean name="notifyJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="cn.net.firstblood.biz.grail.quartz.NotifyJob" />
 	</bean>
+	
+	<bean id="grailRecordJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="grailRecordJob" />
+		<property name="cronExpression" value="0 0 15 ? * MON-FRI" />
+	</bean>
+	<bean name="grailRecordJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="cn.net.firstblood.biz.grail.quartz.GrailRecordJob" />
+	</bean>
 </beans>

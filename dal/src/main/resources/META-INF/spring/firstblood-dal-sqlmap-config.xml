@@ -6,5 +6,6 @@
 	<sqlMap resource="META-INF/sqlmap/Application.xml" />
 	<sqlMap resource="META-INF/sqlmap/Record.xml" />
 	<sqlMap resource="META-INF/sqlmap/Config.xml" />
-
+	<sqlMap resource="META-INF/sqlmap/GrailRecord.xml" />
+	<sqlMap resource="META-INF/sqlmap/MemorialDay.xml" />
 </sqlMapConfig>

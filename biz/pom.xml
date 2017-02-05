@@ -17,7 +17,7 @@
 			<dependency>
 				<groupId>com.chgx.app</groupId>
 				<artifactId>firstblood.dal</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
     </dependencies>
 </project>

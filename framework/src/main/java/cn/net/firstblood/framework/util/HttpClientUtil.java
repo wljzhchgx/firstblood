@@ -8,6 +8,7 @@ import java.net.URI;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class HttpClientUtil {
 	public static final String UTF_8="UTF-8";
@@ -171,6 +173,7 @@ public class HttpClientUtil {
 			request.addHeader(new BasicHeader("Referer","https://wx.qq.com/"));
 			request.addHeader(new BasicHeader("Cookie",cookie));
 			request.setURI(new URI(url));
+			Security.insertProviderAt(new BouncyCastleProvider(),1);
 			HttpResponse response = client.execute(request);
 
 			in = new BufferedReader(new InputStreamReader(response.getEntity()

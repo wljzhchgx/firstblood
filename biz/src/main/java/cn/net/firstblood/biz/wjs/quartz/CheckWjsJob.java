@@ -13,6 +13,7 @@ import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
 
 import cn.net.firstblood.biz.wjs.model.WjsCheckPO;
+import cn.net.firstblood.framework.enums.WeChatMsgType;
 import cn.net.firstblood.framework.notifier.QQIM;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.util.HttpClientUtil;
@@ -69,7 +70,7 @@ public class CheckWjsJob implements StatefulJob{
 				QQIM.notify(wjsCheck.getMsg());
 			}
 			if(wjsCheck.getIsWeChatNotify()){
-				WeChatIM.notify(wjsCheck.getMsg());
+				WeChatIM.notify(wjsCheck.getMsg(),WeChatMsgType.TEXT);
 			}
 		}catch(Exception e){
 			LoggerUtil.COMMON.error(wjsCheck.getName()+"网金社解析异常",e);

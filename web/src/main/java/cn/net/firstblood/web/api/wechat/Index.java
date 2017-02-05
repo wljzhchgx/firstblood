@@ -32,7 +32,7 @@ import com.thoughtworks.xstream.XStream;
  */
 @Controller("wechatIndex")
 public class Index {
-	@Autowired
+//	@Autowired
 	private CmdFacade	cmdFacade;
 	
 	@RequestMapping(value="/api/wechat/index.htm",method = RequestMethod.GET)

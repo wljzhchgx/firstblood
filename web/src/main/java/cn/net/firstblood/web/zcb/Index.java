@@ -33,7 +33,7 @@ import cn.net.firstblood.framework.util.DateUtil;
  */
 @Controller("zcbIndex")
 public class Index {
-	@Autowired
+//	@Autowired
 	private RecordDao recordDao;
 	
 	@RequestMapping("/zcb/index.htm")

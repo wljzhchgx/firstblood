@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd" 
      >
      
-     <bean id="imMap" class="java.util.HashMap">
+<!--      <bean id="imMap" class="java.util.HashMap">
 	    <constructor-arg>
 		    <map>
 		    	<entry key="WE_CHAT"        	 	value-ref="weChatIMService"/>
@@ -25,5 +25,7 @@
 	<bean id="qQIMService" 			class="cn.net.firstblood.framework.notifier.service.impl.QQIMServiceImpl" />
 	<bean id="weChatIMService" 		class="cn.net.firstblood.framework.notifier.service.impl.WeChatIMServiceImpl" />
      
-	<bean id="iMFacade"             class="cn.net.firstblood.framework.notifier.IMFacade"/>
+	<bean id="iMFacade"             class="cn.net.firstblood.framework.notifier.IMFacade"/> -->
+	
+	<bean id="beanUtil"             class="cn.net.firstblood.framework.util.BeanUtil"/>
 </beans>

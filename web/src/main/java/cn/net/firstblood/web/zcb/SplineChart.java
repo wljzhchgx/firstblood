@@ -27,7 +27,7 @@ import cn.net.firstblood.framework.util.DateUtil;
  */
 @Controller
 public class SplineChart {
-	@Autowired
+//	@Autowired
 	private RecordDao recordDao;
 	
 	@RequestMapping("/zcb/splineChart.htm")

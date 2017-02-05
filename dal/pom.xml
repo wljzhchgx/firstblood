@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>com.chgx.app</groupId>
 			<artifactId>firstblood.framework</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

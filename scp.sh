@@ -1,2 +1,3 @@
 #!/bin/sh
-scp /Users/chengx/Documents/svn_co/myproject/firstblood/target/firstblood.war root@firstblood.net.cn:/usr/apache-tomcat-8.0.26/webapps
+ip=`sh /Users/chengx/bin/my/get_ip.sh`
+scp target/firstblood.war root@$ip:/home/admin/webapps

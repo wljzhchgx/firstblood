@@ -18,7 +18,7 @@ public class TianQiCmdManagerImpl implements CmdManager {
 	}
 	
 	public static void main(String[] args){
-		
+		System.out.println(TianQiTool.getTianQi());
 	}
 
 }

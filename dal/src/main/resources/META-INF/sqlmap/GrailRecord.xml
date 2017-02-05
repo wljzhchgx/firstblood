@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="GrailRecord">
+
+	<typeAlias alias="GrailRecordDO" type="cn.net.firstblood.dal.model.GrailRecordDO"/>
+	<typeAlias alias="GrailRecordParam" type="cn.net.firstblood.dal.param.GrailRecordParam"/>
+	
+	<resultMap class="GrailRecordDO" id="GrailRecordDOResult">   
+		<result column="ID" 					property="id"/>
+		<result column="CREATOR" 				property="creator"/>
+		<result column="GMT_CREATE" 			property="gmtCreate"/>
+		<result column="MODIFIER" 				property="modifier"/>
+		<result column="GMT_MODIFIED" 			property="gmtModified"/>
+		<result column="code" 					property="code"/>
+		<result column="desc" 					property="desc"/>
+		<result column="value" 					property="value"/>
+		<result column="float_Value" 			property="floatValue"/>
+		<result column="float_Rate" 			property="floatRate"/>
+		<result column="deal_Hands" 			property="dealHands"/>
+		<result column="deal_Amt" 				property="dealAmt"/>
+		<result column="date" 					property="date"/>
+		<result column="avg_value" 				property="avgValue"/>
+	</resultMap>
+	
+	<sql id="tableFields">
+		ID,
+	    CREATOR,
+	    GMT_CREATE,
+	    MODIFIER,
+	    GMT_MODIFIED,
+	    CODE,
+	    DESC,
+	    VALUE,
+	    FLOAT_VALUE,
+	    FLOAT_RATE,
+	    DEAL_HANDS,
+	    DEAL_AMT,
+	    DATE,
+	    AVG_VALUE
+   	</sql>
+
+	<sql id="conditionSQL">
+   		<dynamic prepend="WHERE">
+   			<isNotEmpty prepend="AND" property="code">
+	          	code = #code#
+			</isNotEmpty>
+		</dynamic>
+   	</sql>
+   	
+	<insert id="insert" parameterClass="GrailRecordDO">
+		    INSERT INTO FB_grail_record
+		    (
+				CREATOR,
+			    GMT_CREATE,
+			    MODIFIER,
+			    GMT_MODIFIED,
+			    CODE,
+			    `DESC`,
+			    VALUE,
+			    FLOAT_VALUE,
+			    FLOAT_RATE,
+			    DEAL_HANDS,
+			    DEAL_AMT,
+			    DATE,
+			    AVG_VALUE
+	    	)
+	    	VALUES
+	    	(
+				#creator# ,
+				now() ,
+				#modifier# ,
+				now() ,
+				#code#,
+			    #desc#,
+			    #value#,
+			    #floatValue#,
+			    #floatRate#,
+			    #dealHands#,
+			    #dealAmt#,
+			    #date#,
+			    #avgValue#
+		    )
+		    <selectKey resultClass="java.lang.Long" keyProperty="id">
+		        SELECT LAST_INSERT_ID()
+		   	</selectKey>
+	</insert>
+	
+   	<update id="update" parameterClass="GrailRecordDO">
+		UPDATE FB_grail_record
+	    SET
+		    GMT_MODIFIED = now()
+    	WHERE ID = #id#   
+	</update>
+
+	<select id="getById" parameterClass="java.lang.Long" resultMap="GrailRecordDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_grail_record 
+		WHERE ID = #id#   
+   	</select>
+   	
+   	
+   	<select id="queryByParam" parameterClass="GrailRecordParam" resultMap="GrailRecordDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_grail_record 
+		<include refid="conditionSQL"/>
+		<isNotEmpty property="orderField"  prepend="order by">
+	     	$orderField$
+	     	<isNotEmpty property="dir"  prepend=" ">
+	     	$dir$
+	     	</isNotEmpty>
+	     	,ID ASC
+	    </isNotEmpty>
+	    <isEmpty property="orderField"  prepend="order by">
+			ID DESC
+	    </isEmpty>
+		LIMIT #mySqlStartIndex#,#mySqlLength#
+   	</select>
+
+   	<select id="countByParam" parameterClass="GrailRecordParam" resultClass="java.lang.Integer">
+   		SELECT 
+      		COUNT(*)
+		FROM FB_grail_record 
+		<include refid="conditionSQL"/>
+   	</select>
+</sqlMap>

@@ -27,8 +27,8 @@ import cn.net.firstblood.framework.util.DateUtil;
  */
 @Controller
 public class Index {
-	@Autowired
-	private RecordDao recordDao;
+//	@Autowired
+//	private RecordDao recordDao;
 	
 	@RequestMapping("/index.htm")
     public String execute(HttpServletRequest request,ModelMap model) {
