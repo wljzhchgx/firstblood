@@ -20,7 +20,7 @@ public class NotifyJob implements StatefulJob {
 	
 	@Override
 	public void execute(JobExecutionContext context)throws JobExecutionException {
-		WeChatIM.notify(GrailTool.getHuJin()+"\n"+GrailTool.getHuSS(),WeChatMsgType.TEXT);
+		WeChatIM.notify(GrailTool.getHuSS("sz399006", "创业板指数")+"\n"+GrailTool.getHuSS("sh000001", "上证综合指数"),WeChatMsgType.TEXT);
 		//WeChatIM.notify(getHuSS());
 	}
 }
