@@ -15,7 +15,10 @@ import cn.net.firstblood.biz.model.ZcbPO;
 import cn.net.firstblood.dal.dao.ConfigDao;
 import cn.net.firstblood.dal.enums.ConfigType;
 import cn.net.firstblood.dal.model.ConfigDO;
+import cn.net.firstblood.framework.enums.WeChatMsgType;
+import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.notifier.model.WeChatIMConfPO;
+import cn.net.firstblood.framework.util.DateUtil;
 
 /**
  * @author gangxiang.chengx
@@ -58,6 +61,16 @@ public class ZcbAction {
 			model.put("result", ConfigType.WECHAT_IM_CONFIG.getDesc()+"恭喜设置失败");
 		}
 		
+		return "/result";
+	}
+	
+	@RequestMapping("/zcb/action/doNotify.do")
+    public String doNotify(HttpServletRequest request,ModelMap model) {
+		int hour = DateUtil.getHourOfDay();
+		if(hour >= 12){
+			hour -= 12;
+		}
+		model.put("result", WeChatIM.notify("我很健康"+WeChatIM.EMOJI_TIME.get(hour),WeChatMsgType.TEXT));
 		return "/result";
 	}
 	
