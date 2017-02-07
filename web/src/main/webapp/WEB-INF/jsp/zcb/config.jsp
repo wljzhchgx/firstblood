@@ -19,4 +19,8 @@
 		receiveAddr:<input type="text" name="receiveAddr" value="<%=weChatIMConfig.getReceiveAddr()%>" style=""><br/>
 		<input type="submit"  name="" value="提 交">
 	</form>
+	
+	<form name="" action="/zcb/action/doNotify.do" method="post">
+		<input type="submit"  name="" value="消息测试">
+	</form>
 </div>

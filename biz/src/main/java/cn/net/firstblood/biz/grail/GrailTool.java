@@ -125,6 +125,6 @@ public class GrailTool {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(getHuJin());
+		System.out.println(getHuSS());
 	}
 }
