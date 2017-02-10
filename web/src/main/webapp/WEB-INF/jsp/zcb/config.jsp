@@ -23,4 +23,8 @@
 	<form name="" action="/zcb/action/doNotify.do" method="post">
 		<input type="submit"  name="" value="消息测试">
 	</form>
+<!-- 	
+	<form name="" action="/zcb/action/doRecordGrail.do" method="post">
+		<input type="submit"  name="" value="补大盘数据">
+	</form> -->
 </div>

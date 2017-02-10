@@ -13,6 +13,7 @@ import cn.net.firstblood.framework.enums.CmdType;
  *
  */
 public class CmdFacade {
+	
 	private Map<CmdType,CmdManager> cmdMap;
 
 	public void setCmdMap(Map<CmdType, CmdManager> cmdMap) {
@@ -20,6 +21,14 @@ public class CmdFacade {
 	}
 	
 	public String exeCmd(CmdType type){
+		return cmdMap.get(type).exeCmd();
+	}
+	
+	public String exeCmd(String cmdType){
+		CmdType type = CmdType.getByKey(cmdType);
+		if(cmdMap.get(type) == null){
+			return "不支持的指令:"+cmdType;
+		}
 		return cmdMap.get(type).exeCmd();
 	}
 }

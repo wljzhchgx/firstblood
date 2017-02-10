@@ -3,6 +3,8 @@
  */
 package cn.net.firstblood.web.zcb.action;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +12,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.net.firstblood.biz.grail.GrailTool;
+import cn.net.firstblood.biz.grail.quartz.GrailRecordJob;
 import cn.net.firstblood.biz.job.CheckZcbJob;
 import cn.net.firstblood.biz.model.ZcbPO;
 import cn.net.firstblood.dal.dao.ConfigDao;
+import cn.net.firstblood.dal.dao.GrailRecordDao;
 import cn.net.firstblood.dal.enums.ConfigType;
 import cn.net.firstblood.dal.model.ConfigDO;
+import cn.net.firstblood.dal.model.GrailRecordDO;
 import cn.net.firstblood.framework.enums.WeChatMsgType;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.notifier.model.WeChatIMConfPO;
+import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.DateUtil;
+import cn.net.firstblood.framework.util.LoggerUtil;
 
 /**
  * @author gangxiang.chengx
@@ -71,6 +79,20 @@ public class ZcbAction {
 			hour -= 12;
 		}
 		model.put("result", WeChatIM.notify("我很健康"+WeChatIM.EMOJI_TIME.get(hour),WeChatMsgType.TEXT));
+		return "/result";
+	}
+	
+	@RequestMapping("/zcb/action/doRecordGrail.do")
+    public String doRecordGrail(HttpServletRequest request,ModelMap model) {
+		LoggerUtil.COMMON.info("GrailRecordJob start");
+		GrailRecordDao grailRecordDao = BeanUtil.getNean("grailRecordDao");
+		for(Map.Entry<String,String> entry : GrailRecordJob.CODE_DESC_MAP.entrySet()){
+			GrailRecordDO grailRecord = GrailTool.getGrailDO(entry.getKey(), entry.getValue());
+			grailRecordDao.insert(grailRecord);
+		}
+		LoggerUtil.COMMON.info("GrailRecordJob end");
+		
+		model.put("result","补数据成功");
 		return "/result";
 	}
 	

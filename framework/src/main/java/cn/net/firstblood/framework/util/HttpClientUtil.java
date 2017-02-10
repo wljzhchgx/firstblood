@@ -205,6 +205,20 @@ public class HttpClientUtil {
 
 		return body;
 	}
+	
+	public static String paseResponseUTF8(HttpResponse response) {
+		HttpEntity entity = response.getEntity();
+		String body = null;
+		try {
+			body = EntityUtils.toString(entity,"utf-8");
+		} catch (ParseException e) {
+			LoggerUtil.COMMON.error("paseResponse error", e);
+		} catch (IOException e) {
+			LoggerUtil.COMMON.error("paseResponse error", e);
+		}
+
+		return body;
+	}
 
 	public static CloseableHttpClient createSSLClientDefault() {
 		try {

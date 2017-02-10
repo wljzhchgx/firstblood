@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.net.firstblood.biz.job.WeChatReceiveJob;
 import cn.net.firstblood.framework.notifier.model.ConfigStore;
 import cn.net.firstblood.framework.notifier.model.WeChatIMConfPO;
 
@@ -22,7 +21,7 @@ public class Config {
 	
 	@RequestMapping("/zcb/config.htm")
     public String execute(HttpServletRequest request,ModelMap model) {
-		model.put("weChatReceive", WeChatReceiveJob.weChatReceive);
+		model.put("weChatReceive", ConfigStore.getSelfConfig(ConfigStore.WECHATRECEIVE));
 		WeChatIMConfPO po = ConfigStore.getConfig(WeChatIMConfPO.class);
 		if(po==null){
 			model.put("weChatIMConfig", new WeChatIMConfPO());

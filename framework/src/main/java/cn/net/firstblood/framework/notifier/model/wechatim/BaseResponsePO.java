@@ -7,6 +7,9 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @version $Id: BaseResponse.java, v 0.1 2017年2月4日 下午3:23:12 gangxiang.chengx Exp $
  */
 public class BaseResponsePO {
+	//不健康状态-发消息不成功
+	public static final String RET_3 = "3";
+	
 	@JSONField(name = "Ret")
 	private String ret;
 	

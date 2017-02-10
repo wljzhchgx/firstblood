@@ -3,14 +3,12 @@
  */
 package cn.net.firstblood.biz.job;
 
-import java.util.Date;
-
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
 
-import cn.net.firstblood.framework.notifier.WeChatIM;
-import cn.net.firstblood.framework.util.DateUtil;
+import cn.net.firstblood.biz.manager.WeChatManager;
+import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.LoggerUtil;
 
 /**
@@ -19,17 +17,24 @@ import cn.net.firstblood.framework.util.LoggerUtil;
  *
  */
 public class WeChatReceiveJob implements StatefulJob {
-	public static String weChatReceive = "";
+	
+	private WeChatManager	weChatManager;
 	
 	@Override
 	public void execute(JobExecutionContext context)throws JobExecutionException {
 		try{
 			LoggerUtil.COMMON.info("WeChatReceiveJob start");
-			weChatReceive = WeChatIM.receive()+"[date:"+DateUtil.format(new Date())+"]";
-			LoggerUtil.COMMON.info("WeChatReceiveJob receive:"+weChatReceive);
+			init();
+			weChatManager.syncCheck();
 			LoggerUtil.COMMON.info("WeChatReceiveJob end");
 		}catch(Exception e){
 			LoggerUtil.COMMON.error("WeChatReceiveJob error",e);
+		}
+	}
+	
+	public void init(){
+		if(weChatManager == null){
+			weChatManager = BeanUtil.getNean("weChatManager");
 		}
 	}
 	

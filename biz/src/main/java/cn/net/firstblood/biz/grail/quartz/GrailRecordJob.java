@@ -23,7 +23,7 @@ import cn.net.firstblood.framework.util.LoggerUtil;
  */
 public class GrailRecordJob implements StatefulJob {
 	
-	private static final Map<String,String> CODE_DESC_MAP = new HashMap<String,String>();
+	public static final Map<String,String> CODE_DESC_MAP = new HashMap<String,String>();
 	static{
 		CODE_DESC_MAP.put("sh000001", "上证综合指数");
 		CODE_DESC_MAP.put("sz399006", "创业板指数");
