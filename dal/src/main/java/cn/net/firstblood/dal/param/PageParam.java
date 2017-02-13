@@ -52,6 +52,11 @@ public class PageParam<E>{
 	 * 排序字段
 	 */
 	private String orderField;
+	
+	/**
+	 * 分组字段
+	 */
+	private String groupField;
 
 	/**
 	 * 排序方式
@@ -136,6 +141,14 @@ public class PageParam<E>{
 
 	public void setOrderField(String orderField) {
 		this.orderField = orderField;
+	}
+
+	public String getGroupField() {
+		return groupField;
+	}
+
+	public void setGroupField(String groupField) {
+		this.groupField = groupField;
 	}
 
 	public DirType getDir() {

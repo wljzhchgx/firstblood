@@ -10,7 +10,7 @@ package cn.net.firstblood.framework.enums;
 public enum CmdType {
 	CMD("0","查看指令"),
 	
-	HU_JIN("1","沪金"),
+	HU_JIN("1","统计"),
 	
 	HU_SS("2","上证指数"),
 	

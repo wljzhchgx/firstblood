@@ -20,6 +20,7 @@ import cn.net.firstblood.framework.enums.WeChatMsgType;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.DateUtil;
+import cn.net.firstblood.framework.util.FbConstant;
 import cn.net.firstblood.framework.util.FileUtil;
 import cn.net.firstblood.framework.util.LoggerUtil;
 
@@ -29,7 +30,6 @@ import cn.net.firstblood.framework.util.LoggerUtil;
  * @version $Id: MemorialDayNotifyJob.java, v 0.1 2017年2月4日 下午5:06:21 gangxiang.chengx Exp $
  */
 public class MemorialDayNotifyJob implements StatefulJob {
-	private static final String PIC_ROOT_DIR = "/home/admin/pic/";
 	
 	private MemorialDayDao	memorialDayDao;
 	
@@ -70,7 +70,7 @@ public class MemorialDayNotifyJob implements StatefulJob {
 			MemorialDayDO memorialDay = memorialDayList.get(0);
 			WeChatIM.notify(year+"年的今天,"+memorialDay.getSubject()+"\n"+memorialDay.getContent(),WeChatMsgType.TEXT);
 			hasNotify = true;
-			String fileDirPath = PIC_ROOT_DIR+year+DateUtil.format(DateUtil.getCurrentTime(), "/MMdd");
+			String fileDirPath = FbConstant.PIC_ROOT_DIR_PATH+year+DateUtil.format(DateUtil.getCurrentTime(), "/MMdd");
 			List<File> fileList = FileUtil.getFileList(fileDirPath);
 			for(File file : fileList){
 				LoggerUtil.COMMON.info("MemorialDayNotifyJob [file:"+file.getAbsolutePath()+"]");

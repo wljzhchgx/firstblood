@@ -14,6 +14,8 @@
 		<result column="subject" 				property="subject"/>
 		<result column="content" 				property="content"/>
 		<result column="date" 					property="date"/>
+		<result column="key_word" 				property="keyWord"/>
+		<result column="group_code" 			property="groupCode"/>
 	</resultMap>
 	
 	<sql id="tableFields">
@@ -24,7 +26,9 @@
 	    GMT_MODIFIED,
 	    SUBJECT,
 	    CONTENT,
-	    DATE
+	    DATE,
+	    KEY_WORD,
+	    GROUP_CODE
    	</sql>
 
 	<sql id="conditionSQL">
@@ -34,6 +38,9 @@
 			</isNotEmpty>
 	      	<isNotEmpty prepend="AND" property="dateEnd">
 	          	DATE <![CDATA[ <= ]]> #dateEnd#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="AND" property="likeKeyWord">
+	          	KEY_WORD like concat('%', #likeKeyWord#,'%')
 	        </isNotEmpty>
 		</dynamic>
    	</sql>
@@ -47,7 +54,9 @@
 			    GMT_MODIFIED,
 			    SUBJECT,
 			    CONTENT,
-			    DATE
+			    DATE,
+			    KEY_WORD,
+			    GROUP_CODE
 	    	)
 	    	VALUES
 	    	(
@@ -57,7 +66,9 @@
 				now() ,
 				#subject#,
 				#content#,
-				#date#
+				#date#,
+				#keyWord#,
+				#groupCode#
 		    )
 		    <selectKey resultClass="java.lang.Long" keyProperty="id">
 		        SELECT LAST_INSERT_ID()
@@ -84,6 +95,9 @@
       	<include refid="tableFields"/>
 		FROM FB_MEMORIAL_DAY 
 		<include refid="conditionSQL"/>
+		<isNotEmpty property="groupField"  prepend="GROUP BY">
+			$groupField$
+		</isNotEmpty>
 		<isNotEmpty property="orderField"  prepend="order by">
 	     	$orderField$
 	     	<isNotEmpty property="dir"  prepend=" ">
@@ -102,5 +116,8 @@
       		COUNT(*)
 		FROM FB_MEMORIAL_DAY 
 		<include refid="conditionSQL"/>
+		<isNotEmpty property="groupField"  prepend="GROUP BY">
+			$groupField$
+		</isNotEmpty>
    	</select>
 </sqlMap>

@@ -96,5 +96,6 @@
 	</bean>
 	
 	<bean name="weChatManager" class="cn.net.firstblood.biz.manager.impl.WeChatManagerImpl"/>
+	<bean name="memorialDayManager" class="cn.net.firstblood.biz.manager.impl.MemorialDayManagerImpl"/>
 	
 </beans>

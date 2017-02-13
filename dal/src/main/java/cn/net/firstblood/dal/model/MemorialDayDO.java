@@ -26,6 +26,16 @@ public class MemorialDayDO extends EntityObject{
 	 * 纪念日期
 	 */
 	private Date date;
+	
+	/**
+	 * 关键词  xxx,xxx
+	 */
+	private String keyWord;
+	
+	/**
+	 * 分类码 一般为 时间戳+XXX
+	 */
+	private String groupCode;
 
 	public String getSubject() {
 		return subject;
@@ -49,6 +59,22 @@ public class MemorialDayDO extends EntityObject{
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getKeyWord() {
+		return keyWord;
+	}
+
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
+	}
+
+	public String getGroupCode() {
+		return groupCode;
+	}
+
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
 	} 
 	
 }

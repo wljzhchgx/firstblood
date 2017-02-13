@@ -14,6 +14,8 @@ public class MemorialDayParam extends PageParam<MemorialDayDO> {
 	
 	private Date dateEnd;
 
+	private String likeKeyWord;
+	
 	public Date getDateBegin() {
 		return dateBegin;
 	}
@@ -28,6 +30,14 @@ public class MemorialDayParam extends PageParam<MemorialDayDO> {
 
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
+	}
+
+	public String getLikeKeyWord() {
+		return likeKeyWord;
+	}
+
+	public void setLikeKeyWord(String likeKeyWord) {
+		this.likeKeyWord = likeKeyWord;
 	}
 	
 }

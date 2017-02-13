@@ -294,14 +294,14 @@ public class WeChatIM {
 	
 	public static void main(String args[]){
 		WeChatIMConfPO config = new WeChatIMConfPO();
-		config.setCookie("pgv_pvid=2010687370; _ga=GA1.2.1396463380.1442479853; 3g_guest_id=-9105595419252989952; pt2gguin=o0549891545 ; o_cookie=549891545; ptcz=b37285a5cd8a7665df8c4748a76ee442e6592b3e78cfc912819ffef1e2dab519; webwxuvid =a5579096faa863610496d54f43e2703bd0fff606cbcd9a361cfa86ab21efd9669ea2745f3dc890c895a0b9f55dc3c700; eas_sid =21n4266159U233X9i7I1j0L5l3; pac_uid=1_549891545; tvfe_boss_uuid=cb4c775cb666d394; pgv_pvi=9328928768 ; RK=BFfmP92jEU; webwx_auth_ticket=CIsBEPm5vpIJGoABJbJHFRMuNvnFe0wo6cb7EZMiuXvexNBLx928l31Rq4lgvlVHQronr /LpU18AyHyOuWfU2uRQP9QQGo8efJH+fr6t884FCQzh+yN535KMX5EfVWe+SdOB2Sq4Ecopyji0AiHpjKbCDY4jVAQuGdSSL8M5wKWPW3u /fK8JkvyNLXY=; pgv_si=s3122881536; MM_WX_NOTIFY_STATE=1; MM_WX_SOUND_STATE=1; pgv_info=ssid=s9125598808 ; mm_lang=zh_CN; wxuin=2685885737; wxsid=nJ0zqyHx5ddLOPKK; wxloadtime=1486553441_expired; webwx_data_ticket =gSfoOZKuGk8BnkFSxunkWZQY; login_frequency=1; last_wxuin=2685885737; wxpluginkey=1486549082");
-		config.setFromName("@ba1da373f65142950436ce01bba436a2603c70ac0ae0f4f7dd9490acc7065b11");
-		config.setPassTicket("pass_ticket=wKCVIyZFoTHJeFBaqb1YtNN6Jd0OdgAiDn9jb9M9gNsET2jIWXgqWibNUj7xYXxj");
+		config.setCookie("pgv_pvid=2010687370; _ga=GA1.2.1396463380.1442479853; 3g_guest_id=-9105595419252989952; pt2gguin=o0549891545 ; o_cookie=549891545; ptcz=b37285a5cd8a7665df8c4748a76ee442e6592b3e78cfc912819ffef1e2dab519; webwxuvid =a5579096faa863610496d54f43e2703bd0fff606cbcd9a361cfa86ab21efd9669ea2745f3dc890c895a0b9f55dc3c700; eas_sid =21n4266159U233X9i7I1j0L5l3; pac_uid=1_549891545; tvfe_boss_uuid=cb4c775cb666d394; pgv_pvi=9328928768 ; RK=BFfmP92jEU; webwx_auth_ticket=CIsBENK7/vEHGoABlLKY7qdsQ5ohrrH8kv84ApMiuXvexNBLx928l31Rq4lgvlVHQronr /LpU18AyHyOuWfU2uRQP9QQGo8efJH+fr6t884FCQzh+yN535KMX5EfVWe+SdOB2Sq4Ecopyji0AiHpjKbCDY4jVAQuGdSSLw0dvOK8h1VoldMMWNIipDM =; pgv_si=s3122881536; MM_WX_NOTIFY_STATE=1; MM_WX_SOUND_STATE=1; pgv_info=ssid=s9125598808; wxuin=2685885737 ; douyu_loginKey=7814528c1dcd343b5e7715ba77ff1f28; mm_lang=zh_CN; wxsid=XzUod/GU3JJXCU6x; wxloadtime =1486958609_expired; webwx_data_ticket=gSdXrUi4fCNv5HeRPPlLmHeN; login_frequency=1; last_wxuin=2685885737 ; wxpluginkey=1486945801");
+		config.setFromName("@1f8fb4896bc7c19caf99bfea8fb8d4461b5e94a61438504e5a56784c35f09045");
+		config.setPassTicket("pass_ticket=fKJngPWYYAXKuMvyJIo%252FmlpKoYV%252Fr3fv3acN1eUpp9jshmMCOAqOvXWmK6a3w0kF");
 		//config.setReceiveAddr("https://webpush.weixin.qq.com/cgi-bin/mmwebwx-bin/synccheck?r="+new Date().getTime()+"&skey=%40crypt_adab0c28_5f7dec74ca62b3cdb5ff003f651a54b5&sid=svBt%2BOpUV%2FR3h6o7&uin=2685885737&deviceid=e083429773003918&synckey=1_628900409%7C2_628900581%7C3_628900538%7C11_628900038%7C201_1446984527%7C1000_1446977973&_="+(new Date().getTime()-1000));
-		config.setReceiveAddr("https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?r=1486553573311&skey=%40crypt_adab0c28_843bde186588df9b797c96b38824bba1&sid=nJ0zqyHx5ddLOPKK&uin=2685885737&deviceid=e047727793549918&synckey=1_658780161%7C2_658780169%7C3_658780038%7C11_658780038%7C13_658780038%7C201_1486553441%7C1000_1486549082%7C1001_1486549112%7C1004_1484916511&_=1486553438258");
-		config.setSid("nJ0zqyHx5ddLOPKK");
-		config.setSkey("@crypt_adab0c28_843bde186588df9b797c96b38824bba1");
-		config.setToName("@72442c44c20ac8e4836c5af90d3dd333c0a86eee69a12b7b42fc3bec320b4832");
+		config.setReceiveAddr("https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?r=1486958699727&skey=%40crypt_adab0c28_25c94b8419be3058cf1e6ba543cfc3d4&sid=XzUod%2FGU3JJXCU6x&uin=2685885737&deviceid=e398551113468725&synckey=1_658780283%7C2_658780468%7C3_658780240%7C11_658780038%7C13_658780038%7C201_1486958610%7C1000_1486945801%7C1001_1486945831%7C1002_1486813638%7C1004_1484916736&_=1486958608545");
+		config.setSid("XzUod/GU3JJXCU6x");
+		config.setSkey("@crypt_adab0c28_25c94b8419be3058cf1e6ba543cfc3d4");
+		config.setToName("@aab8f4b7621340478b27571e50c18ba44861756b0817c2f506b86c8f4c59bb2a");
 		ConfigStore.setConfig(config);
 		
 		lastSendTime = DateUtil.parseDate("2015-01-01 00:00:00");
@@ -310,12 +310,12 @@ public class WeChatIM {
 		if(hour >= 12){
 			hour -= 12;
 		}
-		InitRespPO initResp = init();
-		System.out.println(JSONObject.toJSON(initResp));
+//		InitRespPO initResp = init();
+//		System.out.println(JSONObject.toJSON(initResp));
 //		System.out.println("================");
 //		System.out.println(receive(initResp.getSyncKey()));
 //		System.out.println("==="+ receiveMsg(initResp.getSyncKey()).getAddMsgList().get(0).getContent()+"===");
-//		System.out.println(notify("window.synccheck={retcode:\"0\",selector:\"2\"}",WeChatMsgType.TEXT));
+		System.out.println(notify(parseMsg(),WeChatMsgType.TEXT));
 //		String jsonString = uploadMedia("/Users/chengx/Downloads/002.png");
 //		UpLoadMediaResPO upLoadMediaResPO = UpLoadMediaResPO.getObjectFromJson(jsonString);
 //		System.out.println(upLoadMediaResPO.getMediaId());
@@ -330,23 +330,14 @@ public class WeChatIM {
 //		System.out.println(DateUtil.format(new Date(1447228674240L)));
 	}
 	
-	private static String doPost(String nul){
-		CloseableHttpClient client = HttpClientUtil.createSSLClientDefault();
-		WeChatIMConfPO weChatIMConfPO = ConfigStore.getConfig(WeChatIMConfPO.class);
-		try {
-			StringEntity entity;
-			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":1704670422,\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\"e541241359894677\"},\"SyncKey\":{\"Count\":7,\"List\":[{\"Key\":1,\"Val\":640241012},{\"Key\":2,\"Val\":640241012},{\"Key\":3,\"Val\":640241012},{\"Key\":11,\"Val\":640241012},{\"Key\":201,\"Val\":1447314848},{\"Key\":1000,\"Val\":1447309230},{\"Key\":1001,\"Val\":1447309230}]},\"rr\":89027555}","utf-8");
-			entity.setContentEncoding("UTF-8");    
-	        entity.setContentType("application/json"); 
-	        HttpPost post = new HttpPost(nul); 
-	        //post.setEntity(entity);
-	        post.addHeader(new BasicHeader("Referer","https://wx.qq.com/"));
-	        post.addHeader(new BasicHeader("Cookie",weChatIMConfPO.getCookie()));
-	        String result = HttpClientUtil.paseResponse(client.execute(post));
-	        return result;
-		} catch (Exception e) {
-			LoggerUtil.COMMON.error("发送微信消息异常",e);
-		}
-		return null;
+	private static String parseMsg(){
+		String result = "";
+		//27
+		String hen =  "-----------------------------";
+		String shu = "|\ue428--99999天|\uFE827----365天|";
+		
+		result = "\n"+shu+"\n"+shu+"\n"+shu+"\n"+shu+"\n"+hen;
+		return result;
 	}
+	
 }
