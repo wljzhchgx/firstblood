@@ -38,7 +38,7 @@ public class StoryTool {
 	        	String date = "                         ["+spElement.getData().toString().trim()+"]";
 	        	result = result + i+"."+title+"\n"+date+"\n";
 	        	i++;
-	        	if(i>10){
+	        	if(i>5){
 	        		break;
 	        	}
 	        }
