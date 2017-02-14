@@ -21,14 +21,15 @@ public class CmdFacade {
 	}
 	
 	public String exeCmd(CmdType type){
-		return cmdMap.get(type).exeCmd();
+		return cmdMap.get(type).exeCmd(type.getKey());
 	}
 	
 	public String exeCmd(String cmdType){
-		CmdType type = CmdType.getByKey(cmdType);
+		String cmdArray[] = cmdType.split("-");
+		CmdType type = CmdType.getByKey(cmdArray[0]);
 		if(cmdMap.get(type) == null){
 			return "不支持的指令:"+cmdType;
 		}
-		return cmdMap.get(type).exeCmd();
+		return cmdMap.get(type).exeCmd(cmdType);
 	}
 }

@@ -19,15 +19,17 @@
 		    	<entry key="CMD"        	 	value-ref="cmdCmdManager"/>
 		    	<entry key="HU_JIN"        	 	value-ref="huJinCmdManager"/>
 		    	<entry key="HU_SS"        	 	value-ref="huSSCmdManager"/>
-		    	<entry key="TIAN_QI"        	 	value-ref="tianQiCmdManager"/>
+		    	<entry key="TIAN_QI"        	value-ref="tianQiCmdManager"/>
+		    	<entry key="STORY"        	 	value-ref="storyCmdManager"/>
 		    </map>
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="cmdCmdManager" 		class="cn.net.firstblood.biz.cmd.manager.impl.CmdCmdManagerImpl" />
-	<bean id="huJinCmdManager" 		class="cn.net.firstblood.biz.cmd.manager.impl.HuJinCmdManagerImpl" />
-	<bean id="huSSCmdManager" 		class="cn.net.firstblood.biz.cmd.manager.impl.HuSSCmdManagerImpl" />
+	<bean id="cmdCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.CmdCmdManagerImpl" />
+	<bean id="huJinCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.HuJinCmdManagerImpl" />
+	<bean id="huSSCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.HuSSCmdManagerImpl" />
 	<bean id="tianQiCmdManager" 		class="cn.net.firstblood.biz.cmd.manager.impl.TianQiCmdManagerImpl" />
+	<bean id="storyCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.StoryCmdManagerImpl" />
 	
-	<bean id="cmdFacade" 			class="cn.net.firstblood.biz.cmd.CmdFacade" />
+	<bean id="cmdFacade" 				class="cn.net.firstblood.biz.cmd.CmdFacade" />
 </beans>

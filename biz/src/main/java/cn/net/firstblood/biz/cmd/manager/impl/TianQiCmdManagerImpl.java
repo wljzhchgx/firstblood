@@ -13,7 +13,7 @@ import cn.net.firstblood.biz.life.tianqi.TianQiTool;
 public class TianQiCmdManagerImpl implements CmdManager {
 
 	@Override
-	public String exeCmd() {
+	public String exeCmd(String srcCmd) {
 		return TianQiTool.getTianQi();
 	}
 	

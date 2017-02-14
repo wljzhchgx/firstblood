@@ -10,14 +10,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.net.firstblood.biz.job.CheckZcbJob;
 import cn.net.firstblood.biz.job.QQReceiveJob;
-import cn.net.firstblood.biz.job.WeChatReceiveJob;
 import cn.net.firstblood.dal.dao.RecordDao;
 import cn.net.firstblood.dal.enums.DirType;
 import cn.net.firstblood.dal.enums.RecordType;
@@ -39,7 +37,7 @@ public class Index {
 	@RequestMapping("/zcb/index.htm")
     public String execute(HttpServletRequest request,ModelMap model) {
 		model.put("qqReceive", QQReceiveJob.qqReceive);
-		model.put("weChatReceive", WeChatReceiveJob.weChatReceive);
+		model.put("weChatReceive",ConfigStore.getSelfConfig(ConfigStore.WECHATRECEIVE));
 		model.put("zcbList", CheckZcbJob.zcbList);
 		List<Date> dateList = getDateList();
 		String strType = request.getParameter("type");

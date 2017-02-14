@@ -333,10 +333,10 @@ public class WeChatIM {
 	private static String parseMsg(){
 		String result = "";
 		//27
-		String hen =  "-----------------------------";
-		String shu = "|\ue428--99999天|\uFE827----365天|";
-		
-		result = "\n"+shu+"\n"+shu+"\n"+shu+"\n"+shu+"\n"+hen;
+		String hen =  "";
+		String shu = "1.成功或失败的理由\n"+"                         [2012-09-09]";
+		System.out.println(shu.length());
+		result = shu+"\n"+shu+"\n"+shu+"\n"+shu+"\n";
 		return result;
 	}
 	

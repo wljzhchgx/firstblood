@@ -8,13 +8,15 @@ package cn.net.firstblood.framework.enums;
  *
  */
 public enum CmdType {
-	CMD("0","查看指令"),
+	CMD("0","\ue22c 查看指令"),
 	
-	HU_JIN("1","统计"),
+	HU_JIN("1","\ue301 统计"),
 	
-	HU_SS("2","上证指数"),
+	HU_SS("2","\ue14A 上证指数"),
 	
-	TIAN_QI("3","天气预报");
+	TIAN_QI("3","\ue04B 天气预报"),
+	
+	STORY("4","\ue148 小故事");
 	
 	private String key;
 	

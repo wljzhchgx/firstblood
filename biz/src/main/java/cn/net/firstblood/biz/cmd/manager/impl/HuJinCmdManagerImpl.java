@@ -16,7 +16,7 @@ public class HuJinCmdManagerImpl implements CmdManager {
 	private MemorialDayManager	memorialDayManager;
 	
 	@Override
-	public String exeCmd() {
+	public String exeCmd(String srcCmd) {
 		//return GrailTool.getHuJin();
 		return getStrStatisticsBase(memorialDayManager.statisticsBase());
 	}

@@ -20,7 +20,7 @@ public class CmdCmdManagerImpl implements CmdManager {
 	 * @see cn.net.firstblood.biz.cmd.CmdManager#exeCmd(cn.net.firstblood.framework.enums.CmdType)
 	 */
 	@Override
-	public String exeCmd() {
+	public String exeCmd(String srcCmd) {
 		String mediaId = WeChatIM.uploadMedia(HealthNotifyJob.FILE_ABSOLUTEPATH);
 		String picMsg = WeChatIM.notify(mediaId, WeChatMsgType.IMAGE);
 		LoggerUtil.COMMON.info("cmd receive:"+picMsg);

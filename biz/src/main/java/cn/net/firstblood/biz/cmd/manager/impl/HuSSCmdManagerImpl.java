@@ -13,7 +13,7 @@ import cn.net.firstblood.biz.grail.GrailTool;
 public class HuSSCmdManagerImpl implements CmdManager {
 
 	@Override
-	public String exeCmd() {
+	public String exeCmd(String srcCmd) {
 		return GrailTool.getHuSS();
 	}
 
