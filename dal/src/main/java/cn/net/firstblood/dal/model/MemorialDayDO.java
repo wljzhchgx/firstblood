@@ -5,6 +5,8 @@ package cn.net.firstblood.dal.model;
 
 import java.util.Date;
 
+import cn.net.firstblood.framework.util.DateUtil;
+
 
 /**
  * 纪念日
@@ -77,4 +79,10 @@ public class MemorialDayDO extends EntityObject{
 		this.groupCode = groupCode;
 	} 
 	
+	@Override
+	public String toString(){
+		return "主题:"+this.getSubject()+"\n内容:"+this.getContent()
+				+"\n关键词:"+this.getKeyWord()+"\n日期:"+DateUtil.format(this.getDate())
+				+"\n创建时间:"+DateUtil.format(this.getGmtCreate());
+	}
 }

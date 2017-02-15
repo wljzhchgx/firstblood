@@ -16,7 +16,9 @@ public enum CmdType {
 	
 	TIAN_QI("3","\ue04B 天气预报"),
 	
-	STORY("4","\ue148 小故事");
+	STORY("4","\ue148 小故事"),
+	
+	EVENT("5","\ue301 事件");
 	
 	private String key;
 	

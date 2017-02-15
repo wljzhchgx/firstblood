@@ -30,4 +30,23 @@ public class WeChatViewUtil {
 		}
 		return result;
 	}
+	
+	/**
+	 * 转换
+	 * @param map
+	 * @return
+	 */
+	public static String parseOneColumn(Map<String,Object> map){
+		if(CollectionUtils.isEmpty(map)){
+			return "";
+		}
+		String result = "";
+		for(Entry<String,Object> entry : map.entrySet()){
+			result = result + entry.getKey()+"."+entry.getValue()+"\n";
+		}
+		if(result.length()>1){
+			result = result.substring(0, result.length()-1);
+		}
+		return result;
+	}
 }

@@ -21,6 +21,7 @@
 		    	<entry key="HU_SS"        	 	value-ref="huSSCmdManager"/>
 		    	<entry key="TIAN_QI"        	value-ref="tianQiCmdManager"/>
 		    	<entry key="STORY"        	 	value-ref="storyCmdManager"/>
+		    	<entry key="EVENT"        	 	value-ref="eventCmdManager"/>
 		    </map>
 	    </constructor-arg>
 	</bean>
@@ -30,6 +31,7 @@
 	<bean id="huSSCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.HuSSCmdManagerImpl" />
 	<bean id="tianQiCmdManager" 		class="cn.net.firstblood.biz.cmd.manager.impl.TianQiCmdManagerImpl" />
 	<bean id="storyCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.StoryCmdManagerImpl" />
+	<bean id="eventCmdManager" 			class="cn.net.firstblood.biz.cmd.manager.impl.EventCmdManagerImpl" />
 	
 	<bean id="cmdFacade" 				class="cn.net.firstblood.biz.cmd.CmdFacade" />
 </beans>

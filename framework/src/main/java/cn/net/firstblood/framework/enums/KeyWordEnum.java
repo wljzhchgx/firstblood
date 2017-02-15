@@ -5,15 +5,15 @@ package cn.net.firstblood.framework.enums;
  * @version $Id: KeyWordEnum.java, v 0.1 2017年2月10日 下午3:02:29 gangxiang.chengx Exp $
  */
 public enum KeyWordEnum {
-	MOVIE("0","看电影"),
+	MOVIE("MOVIE","看电影"),
 		
-	TRAVEL_DOMESTIC("TRAVEL_DOMESTIC","国内旅游"),
-	
-	TRAVEL_FOREIGN("TRAVEL_FOREIGN","国外旅游"),
+	TRAVEL("TRAVEL","旅游"),
 	
 	MEAL("MEAL","吃饭"),
 	
-	OTHER("OTHER","其他");
+	OTHER("OTHER","其他"),
+	
+	PERSONAL("PERSONAL","个人");
 	
 	private String key;
 	

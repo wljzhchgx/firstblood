@@ -7,4 +7,8 @@ public class FbRunTimeException extends RuntimeException {
 	public FbRunTimeException(Throwable cause){
     	super(cause);
     }
+	
+	public FbRunTimeException(String msg){
+    	super(msg);
+    }
 }
