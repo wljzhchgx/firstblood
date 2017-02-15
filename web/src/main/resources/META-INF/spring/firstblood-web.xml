@@ -15,6 +15,7 @@
 		<property name="locations">    
         	<list>    
             	<value>classpath:/META-INF/conf/firstblood-datasource.properties</value>
+            	<value>file:/usr/local/webapp_config/firstblood.properties</value>
            	</list>    
     	</property>    
 	</bean>
