@@ -75,6 +75,10 @@
 		   	</selectKey>
 	</insert>
 	
+	<delete id="deleteById" parameterClass="java.lang.Long">
+   		DELETE FROM FB_MEMORIAL_DAY WHERE ID = #id#
+	</delete>
+	
    	<update id="update" parameterClass="MemorialDayDO">
 		UPDATE FB_MEMORIAL_DAY
 	    SET
