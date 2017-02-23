@@ -69,6 +69,8 @@ public class WeChatIM {
 	private static final String UID = "2685885737";
 	//本人
 	private static final String ME_UID = "1704670422";
+	
+	private static final String DEVICEID = "e842799103176466";
 	static{
 		double random = Math.random();
 		while(random*1000<100){
@@ -106,7 +108,7 @@ public class WeChatIM {
 				content = "";
 			}
 			StringEntity entity;
-			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\"e654533380863752\"},\"Msg\":{\"Type\":"+msgType.getKey()+",\"Content\":\""+content+"\",\"MediaId\":\""+mediaId+"\",\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"LocalID\":\""+msgId.get()+"\",\"ClientMsgId\":\""+msgId.get()+"\"}}","utf-8");
+			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\""+DEVICEID+"\"},\"Msg\":{\"Type\":"+msgType.getKey()+",\"Content\":\""+content+"\",\"MediaId\":\""+mediaId+"\",\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"LocalID\":\""+msgId.get()+"\",\"ClientMsgId\":\""+msgId.get()+"\"}}","utf-8");
 			entity.setContentEncoding("UTF-8");    
 	        entity.setContentType("application/json"); 
 	        
@@ -118,6 +120,7 @@ public class WeChatIM {
 	        String result = HttpClientUtil.paseResponse(client.execute(post));
 	        LoggerUtil.COMMON.info("发送微信消息结束[content:"+content+"],[msgType:"+msgType.getDesc()+"]");
 	        lastSendTime = new Date();
+	        statusNotify();
 	        return result;
 		} catch (Exception e) {
 			LoggerUtil.COMMON.error("发送微信消息异常",e);
@@ -132,7 +135,7 @@ public class WeChatIM {
 			File file = new File(absolutePath);
 			FileBody fileBody = new FileBody(file);
 			//StringBody stringBody1 = new StringBody("name", ContentType.MULTIPART_FORM_DATA);
-			StringBody uploadmediarequest = new StringBody("{\"UploadType\":2,\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\"e654533380863752\"},\"ClientMediaId\":"+new Date().getTime()+",\"TotalLen\":"+file.length()+",\"StartPos\":0,\"DataLen\":"+file.length()+",\"MediaType\":4,\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"FileMd5\":\""+MD5Util.signMD5(absolutePath+DateUtil.format(DateUtil.getCurrentTime()))+"\"}", ContentType.MULTIPART_FORM_DATA);
+			StringBody uploadmediarequest = new StringBody("{\"UploadType\":2,\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\""+DEVICEID+"\"},\"ClientMediaId\":"+new Date().getTime()+",\"TotalLen\":"+file.length()+",\"StartPos\":0,\"DataLen\":"+file.length()+",\"MediaType\":4,\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"FileMd5\":\""+MD5Util.signMD5(absolutePath+DateUtil.format(DateUtil.getCurrentTime()))+"\"}", ContentType.MULTIPART_FORM_DATA);
 			CloseableHttpClient client = HttpClientUtil.createSSLClientDefault();
 			HttpPost post = new HttpPost("https://file.wx.qq.com/cgi-bin/mmwebwx-bin/webwxuploadmedia?f=json");
 			MultipartEntityBuilder builder = MultipartEntityBuilder.create();
@@ -273,7 +276,7 @@ public class WeChatIM {
 			WeChatIMConfPO weChatIMConfPO = ConfigStore.getConfig(WeChatIMConfPO.class);
 			CloseableHttpClient client = HttpClientUtil.createSSLClientDefault();
 			StringEntity entity;
-			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\"e654533380863752\"}}","utf-8");
+			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\""+DEVICEID+"\"}}","utf-8");
 			entity.setContentEncoding("UTF-8");    
 	        entity.setContentType("application/json"); 
 	        
@@ -297,7 +300,7 @@ public class WeChatIM {
 			WeChatIMConfPO weChatIMConfPO = ConfigStore.getConfig(WeChatIMConfPO.class);
 			CloseableHttpClient client = HttpClientUtil.createSSLClientDefault();
 			StringEntity entity;
-			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\"e654533380863752\"},\"Code\":1,\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"ClientMsgId\":"+new Date().getTime()+"}","utf-8");
+			entity = new StringEntity("{\"BaseRequest\":{\"Uin\":"+UID+",\"Sid\":\""+weChatIMConfPO.getSid()+"\",\"Skey\":\""+weChatIMConfPO.getSkey()+"\",\"DeviceID\":\""+DEVICEID+"\"},\"Code\":1,\"FromUserName\":\""+weChatIMConfPO.getFromName()+"\",\"ToUserName\":\""+weChatIMConfPO.getToName()+"\",\"ClientMsgId\":"+new Date().getTime()+"}","utf-8");
 			entity.setContentEncoding("UTF-8");    
 	        entity.setContentType("text/plain"); 
 	        
