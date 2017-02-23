@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.net.firstblood.biz.cmd.CmdFacade;
 import cn.net.firstblood.biz.manager.WeChatManager;
 import cn.net.firstblood.framework.enums.WeChatMsgType;
@@ -55,6 +57,7 @@ public class WeChatManagerImpl implements WeChatManager {
 				try{
 					LoggerUtil.COMMON.info("SyncCheckTask start");
 					init();
+					LoggerUtil.COMMON.info("SyncCheckTask begin syncKey"+JSON.toJSONString(initRespPO.getSyncKey()));
 					String receiveSrc= WeChatIM.receive(initRespPO.getSyncKey());
 					//掉线
 					if(receiveSrc.indexOf("retcode:\"1101\"") != -1){
@@ -79,7 +82,13 @@ public class WeChatManagerImpl implements WeChatManager {
 							String cmdResult = cmdFacade.exeCmd(webwxSyncResp.getAddMsgList().get(0).getContent());
 							WeChatIM.notify(cmdResult,WeChatMsgType.TEXT);
 						}
-						ConfigStore.setConfigNull(initRespPO);
+						if(webwxSyncResp.getSyncCheckKey()!=null && webwxSyncResp.getSyncCheckKey().getCount()>0){
+							initRespPO.setSyncKey(webwxSyncResp.getSyncCheckKey());
+							LoggerUtil.COMMON.info("SyncCheckTask reset syncKey"+JSON.toJSONString(webwxSyncResp.getSyncCheckKey()));
+						}else{
+							ConfigStore.setConfigNull(initRespPO);
+							LoggerUtil.COMMON.info("SyncCheckTask set init");
+						}
 						LoggerUtil.COMMON.info("SyncCheckTask receiveMsg end");
 						continue;
 					}

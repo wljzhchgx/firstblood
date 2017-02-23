@@ -19,6 +19,9 @@ public class WebwxSyncRespPO {
 	
 	@JSONField(name = "SyncKey")
 	private SyncKeyPO syncKey;
+	
+	@JSONField(name = "SyncCheckKey")
+	private SyncKeyPO syncCheckKey;
 
 	public BaseRequestPO getBaseRequest() {
 		return baseRequest;
@@ -43,5 +46,12 @@ public class WebwxSyncRespPO {
 	public void setSyncKey(SyncKeyPO syncKey) {
 		this.syncKey = syncKey;
 	}
-	
+
+	public SyncKeyPO getSyncCheckKey() {
+		return syncCheckKey;
+	}
+
+	public void setSyncCheckKey(SyncKeyPO syncCheckKey) {
+		this.syncCheckKey = syncCheckKey;
+	}
 }

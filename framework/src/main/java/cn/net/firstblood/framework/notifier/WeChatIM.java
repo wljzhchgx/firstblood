@@ -118,7 +118,6 @@ public class WeChatIM {
 	        String result = HttpClientUtil.paseResponse(client.execute(post));
 	        LoggerUtil.COMMON.info("发送微信消息结束[content:"+content+"],[msgType:"+msgType.getDesc()+"]");
 	        lastSendTime = new Date();
-	        statusNotify();
 	        return result;
 		} catch (Exception e) {
 			LoggerUtil.COMMON.error("发送微信消息异常",e);
