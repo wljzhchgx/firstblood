@@ -17,6 +17,7 @@ import cn.net.firstblood.dal.model.MemorialDayDO;
 import cn.net.firstblood.dal.param.MemorialDayParam;
 import cn.net.firstblood.dal.param.PageParam;
 import cn.net.firstblood.framework.enums.WeChatMsgType;
+import cn.net.firstblood.framework.notifier.EmailNotifier;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.DateUtil;
@@ -69,6 +70,7 @@ public class MemorialDayNotifyJob implements StatefulJob {
 			}
 			MemorialDayDO memorialDay = memorialDayList.get(0);
 			WeChatIM.notify(year+"年的今天,"+memorialDay.getSubject()+"\n"+memorialDay.getContent(),WeChatMsgType.TEXT);
+			EmailNotifier.notify("549891545@qq.com", "纪念日提醒", (year+"年的今天,"+memorialDay.getSubject()+"</br>"+memorialDay.getContent()));
 			hasNotify = true;
 			String fileDirPath = FbConstant.PIC_ROOT_DIR_PATH+year+DateUtil.format(DateUtil.getCurrentTime(), "/MMdd");
 			List<File> fileList = FileUtil.getFileList(fileDirPath);
@@ -80,6 +82,7 @@ public class MemorialDayNotifyJob implements StatefulJob {
 		}
 		if(!hasNotify){
 			WeChatIM.notify("今日无纪念", WeChatMsgType.TEXT);
+			EmailNotifier.notify("549891545@qq.com", "纪念日提醒", "今日无纪念");
 		}
 	}
 }

@@ -82,6 +82,9 @@
    	<update id="update" parameterClass="MemorialDayDO">
 		UPDATE FB_MEMORIAL_DAY
 	    SET
+	    	<isNotEmpty property="content">
+		    content = #content# ,
+		    </isNotEmpty>
 		    GMT_MODIFIED = now()
     	WHERE ID = #id#   
 	</update>

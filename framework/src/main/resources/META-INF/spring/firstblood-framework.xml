@@ -28,4 +28,9 @@
 	<bean id="iMFacade"             class="cn.net.firstblood.framework.notifier.IMFacade"/> -->
 	
 	<bean id="beanUtil"             class="cn.net.firstblood.framework.util.BeanUtil"/>
+	<bean id="fBConfigPO"             class="cn.net.firstblood.framework.model.FBConfigPO">
+		<property name="smtpUserName"><value>${firstblood.common.smtp.userName}</value></property>
+		<property name="smtpPassWord"><value>${firstblood.common.smtp.passWord}</value></property>
+	</bean>
+	
 </beans>

@@ -14,7 +14,7 @@ public class HuSSCmdManagerImpl implements CmdManager {
 
 	@Override
 	public String exeCmd(String srcCmd) {
-		return GrailTool.getHuSS();
+		return GrailTool.getHuSS("sz399006", "创业板指数")+"\n"+GrailTool.getHuSS("sh000001", "上证综合指数");
 	}
 
 }

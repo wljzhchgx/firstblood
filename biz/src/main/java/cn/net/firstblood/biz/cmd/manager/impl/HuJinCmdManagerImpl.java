@@ -7,6 +7,7 @@ import java.util.Map;
 
 import cn.net.firstblood.biz.cmd.manager.CmdManager;
 import cn.net.firstblood.biz.manager.MemorialDayManager;
+import cn.net.firstblood.framework.notifier.EmailNotifier;
 
 /**
  * @author gangxiang.chengx
@@ -18,7 +19,9 @@ public class HuJinCmdManagerImpl implements CmdManager {
 	@Override
 	public String exeCmd(String srcCmd) {
 		//return GrailTool.getHuJin();
-		return getStrStatisticsBase(memorialDayManager.statisticsBase());
+		String str =  getStrStatisticsBase(memorialDayManager.statisticsBase());
+		//EmailNotifier.notify("549891545@qq.com", "命令通知", str.replaceAll("\n", "</br>"));
+		return str;
 	}
 	
 	/**
