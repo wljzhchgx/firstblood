@@ -320,14 +320,14 @@ public class WeChatIM {
 	
 	public static void main(String args[]){
 		WeChatIMConfPO config = new WeChatIMConfPO();
-		config.setCookie("pgv_pvid=2010687370; _ga=GA1.2.1396463380.1442479853; 3g_guest_id=-9105595419252989952; pt2gguin=o0549891545 ; o_cookie=549891545; ptcz=b37285a5cd8a7665df8c4748a76ee442e6592b3e78cfc912819ffef1e2dab519; eas_sid =21n4266159U233X9i7I1j0L5l3; pac_uid=1_549891545; tvfe_boss_uuid=cb4c775cb666d394; pgv_pvi=9328928768 ; RK=BFfmP92jEU; pgv_si=s3122881536; pgv_info=ssid=s9125598808; douyu_loginKey=dd7c11f2fc6665e9fdaaeadde1b5bfc6 ; MM_WX_NOTIFY_STATE=1; MM_WX_SOUND_STATE=1; wxuin=2685885737; webwxuvid=fe61714eae72c333b61c69c231b9208faa72f9b023dbd9a9ed397c8aa33ad590c5662bbf425d491ab671266e483b019b ; webwx_auth_ticket=CIsBENqzpvcPGoABsQBsfqVS6gbnALvJEQeq+VlsaoSSoj2NNdILGvyd+3ZY9YpH+VNDKa+3tfRCpIBLp8VkRTfVoWM8YVSz /5b8Kf+C4kFiw9oNmtVjsGQrMa4cEJBABCKYFYVY0QUcHSLyA+EpMlqUWJDWdPiZWBy7HA0dvOK8h1VoldMMWNIipDM=; login_frequency =1; last_wxuin=2685885737; mm_lang=zh_CN; wxsid=wKaehZg/74/YQ4yb; wxloadtime=1487651870_expired; webwx_data_ticket =gScu1rzHZWoQMbIou3fLuzAb; wxpluginkey=1487638621");
-		config.setFromName("@1d50a9dc2067c8a9522aa37f464750b890c9003156aea0c307954a19c340312e");
-		config.setPassTicket("pass_ticket=Ws0z7qXbtbPX4pzKO%2BtFClt%2Bwsf%2FhXilfGISs944hsorGOTXbtLzu%2BmLfSbKe5P6");
+		config.setCookie("pgv_pvid=2010687370; _ga=GA1.2.1396463380.1442479853; 3g_guest_id=-9105595419252989952; pt2gguin=o0549891545 ; o_cookie=549891545; ptcz=b37285a5cd8a7665df8c4748a76ee442e6592b3e78cfc912819ffef1e2dab519; eas_sid =21n4266159U233X9i7I1j0L5l3; pac_uid=1_549891545; tvfe_boss_uuid=cb4c775cb666d394; mm_lang=zh_CN; pgv_pvi =7144694784; pgv_si=s1140709376; MM_WX_NOTIFY_STATE=1; MM_WX_SOUND_STATE=1; wxuin=2685885737; wxsid=KoERZSeD0yDTP +bC; wxloadtime=1488201745_expired; webwx_data_ticket=gSc6qdAGJpX5fCR6lLTCZpZk; webwxuvid=050652b9051448ef1db22071886dbb921c3e51362b4b76bd5988887f39ecb5f0d751d1e9501b7cd1b4580f542ade931c ; webwx_auth_ticket=CIsBEPq/rssOGoABJ1wiXYR7yvOhZYzLIqnTUc6qQrDf2MvB4EuvMsE0G9ffW48njywJbZA5zK5rGIAZE9X7YZvBTh7 /l3Mxcgy93Sa3ndgnlTmzPnucNuDRbrIIlObRJY56y4K17KWUTRjr2AZFQ1jdijVv7ez9jHnJ+ymeODjm+CH9nS1M1kkrfIU=; login_frequency =1; last_wxuin=2685885737; wxpluginkey=1488189961");
+		config.setFromName("@579e13426a1badb4a1f8316284872fcb5b02f7f587229fb1d7eccee6a1486358");
+		config.setPassTicket("pass_ticket=kC4Kl0Iq8PTHbxTO0lDwS7oy2adcPMcuK1pa3sz5dtxYFhFjBNFYvD0iOLH0dhcn");
 		//config.setReceiveAddr("https://webpush.weixin.qq.com/cgi-bin/mmwebwx-bin/synccheck?r="+new Date().getTime()+"&skey=%40crypt_adab0c28_5f7dec74ca62b3cdb5ff003f651a54b5&sid=svBt%2BOpUV%2FR3h6o7&uin=2685885737&deviceid=e083429773003918&synckey=1_628900409%7C2_628900581%7C3_628900538%7C11_628900038%7C201_1446984527%7C1000_1446977973&_="+(new Date().getTime()-1000));
-		config.setReceiveAddr("https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?r=1487651937580&skey=%40crypt_adab0c28_2c5d2997ce1517aef0e09998e03a7c24&sid=wKaehZg%2F74%2FYQ4yb&uin=2685885737&deviceid=e654533380863752&synckey=1_658780677%7C2_658780854%7C3_658780668%7C11_658780038%7C13_658780038%7C201_1487651871%7C1000_1487638621%7C1001_1487638651%7C1002_1487575879%7C1004_1484917121&_=1487651797941");
-		config.setSid("wKaehZg/74/YQ4yb");
-		config.setSkey("@crypt_adab0c28_2c5d2997ce1517aef0e09998e03a7c24");
-		config.setToName("@07105cdcba389c465b5c3bc954fdd38fc64cb3b99ac987eb654c0f5dce0e7631");
+		config.setReceiveAddr("https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?r=1488201848119&skey=%40crypt_adab0c28_f37321cf9e14f00869505316936b9677&sid=KoERZSeD0yDTP%2BbC&uin=2685885737&deviceid=e858487348029079&synckey=1_658781356%7C2_658781360%7C3_658780668%7C11_658780038%7C13_658780038%7C201_1488201769%7C1000_1488189961%7C1001_1488189991%7C1002_1487748553%7C1004_1484917425&_=1488201719192");
+		config.setSid("KoERZSeD0yDTP+bC");
+		config.setSkey("@crypt_adab0c28_f37321cf9e14f00869505316936b9677");
+		config.setToName("weixin");
 		ConfigStore.setConfig(config);
 		
 		lastSendTime = DateUtil.parseDate("2015-01-01 00:00:00");
@@ -336,13 +336,13 @@ public class WeChatIM {
 		if(hour >= 12){
 			hour -= 12;
 		}
-		InitRespPO initResp = init();
-		System.out.println(JSONObject.toJSON(initResp));
-		statusNotify();
+//		InitRespPO initResp = init();
+//		System.out.println(JSONObject.toJSON(initResp));
+//		statusNotify();
 //		System.out.println("================");
 //		System.out.println(receive(initResp.getSyncKey()));
 //		System.out.println("==="+ receiveMsg(initResp.getSyncKey()).getAddMsgList().get(0).getContent()+"===");
-		System.out.println(notify(parseMsg(),WeChatMsgType.TEXT));
+		System.out.println(notify("&lt;newcount&gt;3&lt;/newcount&gt;&lt;version&gt;900&lt;/version&gt;",WeChatMsgType.TEXT));
 //		String jsonString = uploadMedia("/Users/chengx/Downloads/002.png");
 //		UpLoadMediaResPO upLoadMediaResPO = UpLoadMediaResPO.getObjectFromJson(jsonString);
 //		System.out.println(upLoadMediaResPO.getMediaId());

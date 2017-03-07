@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>div+css布局限制图片最大宽度图片水平垂直居中兼容IE6</title>
+<meta name="description" content="div+css布局通过样式表设置容器内容图片的最大图片宽度和最小宽度，让图片等比例缩放，让图片垂直居中和图片水平居中。" />
+</head>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+.demo{width:666px;margin:0 auto;}
+.demo h2{color:#3366cc;height:24px;margin:20px;font-size:14px;}
+.demo li{float:left;margin:10px;width:200px;height:230px;overflow:hidden;border:solid 1px #ddd;display:inline;}
+.demo li .subsummary{height:24px;line-height:24px;overflow:hidden;padding:0 5px;border-top:solid 1px #ddd;background:#EFFBFF;text-align:center;}
+.demo li .subsummary a{font-size:12px;text-decoration:none;color:#3366cc;}
+/* ver_pic */
+.ver_pic{width:200px;height:230px;background-color:#eee;text-align:center;position:relative;display:table-cell;vertical-align:middle;}
+.ver_pic .subpic{*position:absolute;top:50%;left:50%;}
+.ver_pic .subpic img{*position:relative;top:-50%;left:-50%;}
+.ver_pic .subpic img{ 
+  max-width:140px; 
+  min-width:100px;
+  width:expression(this.width > 140 ? "140px" : this.width); 
+}
+</style>
+<body>
+<div class="demo">
+    <h2>主题:ssdf吖发个环境肯定我家的发卡</h2>
+    <ul>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="div+css教程TOP排行榜或新闻列表最标准div css样式表代码写法" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/2.jpg" /></a></div>
+            </div>
+        </li>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="div+css多张背景图片规范写法图片透明度显示" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/1.jpg" /></a></div>
+            </div>
+        </li>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="用div+css制作纯CSS下拉菜单，兼容IE6 IE7 IE8及以上 Firefox" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/3.jpg" /></a></div>
+            </div>
+        </li>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="div+css制作非常实用的24款分页页码css代码" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/4.jpg" /></a></div>
+            </div>
+        </li>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="div+css教程TOP排行榜或新闻列表最标准div css样式表代码写法" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/2.jpg" /></a></div>
+            </div>
+        </li>
+        <li>
+            <div class="ver_pic">
+                <div class="subpic"><a href="http://www.17sucai.com/" target="_blank"><img alt="div+css多张背景图片规范写法图片透明度显示" src="http://www.17sucai.com/preview/11/2013-04-30/css%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E5%AE%BD%E5%BA%A6/images/1.jpg" /></a></div>
+            </div>
+        </li>
+    </ul>
+</div>  
+</body>
+</html>
