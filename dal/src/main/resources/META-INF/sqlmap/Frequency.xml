@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Frequency">
+
+	<typeAlias alias="FrequencyDO" type="cn.net.firstblood.dal.model.FrequencyDO"/>
+	<typeAlias alias="FrequencyParam" type="cn.net.firstblood.dal.param.FrequencyParam"/>
+	
+	<resultMap class="FrequencyDO" id="FrequencyDOResult">   
+		<result column="ID" 					property="id"/>
+		<result column="CREATOR" 				property="creator"/>
+		<result column="GMT_CREATE" 			property="gmtCreate"/>
+		<result column="MODIFIER" 				property="modifier"/>
+		<result column="GMT_MODIFIED" 			property="gmtModified"/>
+		<result column="UK_KEY" 				property="ukKey"/>
+		<result column="TIMES" 					property="times"/>
+	</resultMap>
+	
+	<sql id="tableFields">
+		ID,
+	    CREATOR,
+	    GMT_CREATE,
+	    MODIFIER,
+	    GMT_MODIFIED,
+	    UK_KEY,
+	    TIMES
+   	</sql>
+
+	<sql id="conditionSQL">
+   		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="ukKey">
+	          	UK_KEY = #ukKey#
+			</isNotEmpty>
+		</dynamic>
+   	</sql>
+   	
+	<insert id="insert" parameterClass="FrequencyDO">
+		    INSERT INTO FB_FREQUENCY
+		    (
+				CREATOR,
+			    GMT_CREATE,
+			    MODIFIER,
+			    GMT_MODIFIED,
+			    UK_KEY,
+			    TIMES
+	    	)
+	    	VALUES
+	    	(
+				#creator# ,
+				now() ,
+				#modifier# ,
+				now() ,
+			    #ukKey#,
+			    #times#
+		    )
+		    <selectKey resultClass="java.lang.Long" keyProperty="id">
+		        SELECT LAST_INSERT_ID()
+		   	</selectKey>
+	</insert>
+	
+   	<update id="update" parameterClass="FrequencyDO">
+		UPDATE FB_FREQUENCY
+	    SET
+	    	<isNotEmpty property="times">
+		    TIMES = #times#,
+		    </isNotEmpty>
+		    GMT_MODIFIED = now()
+    	WHERE ID = #id#   
+	</update>
+
+	<select id="getById" parameterClass="java.lang.Long" resultMap="FrequencyDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_FREQUENCY 
+		WHERE ID = #id#   
+   	</select>
+   	
+   	<select id="queryByParam" parameterClass="FrequencyParam" resultMap="FrequencyDOResult">
+   		SELECT 
+      	<include refid="tableFields"/>
+		FROM FB_FREQUENCY 
+		<include refid="conditionSQL"/>
+		<isNotEmpty property="orderField"  prepend="order by">
+	     	$orderField$
+	     	<isNotEmpty property="dir"  prepend=" ">
+	     	$dir$
+	     	</isNotEmpty>
+	     	,ID ASC
+	    </isNotEmpty>
+	    <isEmpty property="orderField"  prepend="order by">
+			ID DESC
+	    </isEmpty>
+		LIMIT #mySqlStartIndex#,#mySqlLength#
+   	</select>
+
+   	<select id="countByParam" parameterClass="FrequencyParam" resultClass="java.lang.Integer">
+   		SELECT 
+      		COUNT(*)
+		FROM FB_FREQUENCY 
+		<include refid="conditionSQL"/>
+   	</select>
+   	
+   	<update id="addOneTimeByUkKey" parameterClass="java.util.Map">
+		UPDATE FB_FREQUENCY
+	    SET
+		    TIMES = TIMES+1,
+		    GMT_MODIFIED = now()
+    	WHERE UK_KEY = #ukKey#
+    	AND   TIMES <![CDATA[ < ]]> #maxLimit#
+	</update>
+</sqlMap>

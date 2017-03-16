@@ -6,8 +6,8 @@ package cn.net.firstblood.biz.cmd.manager.impl;
 import java.util.Map;
 
 import cn.net.firstblood.biz.cmd.manager.CmdManager;
+import cn.net.firstblood.biz.common.notifier.EmailNotifier;
 import cn.net.firstblood.biz.manager.MemorialDayManager;
-import cn.net.firstblood.framework.notifier.EmailNotifier;
 
 /**
  * @author gangxiang.chengx

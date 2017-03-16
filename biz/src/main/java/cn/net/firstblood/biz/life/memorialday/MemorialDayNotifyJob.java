@@ -12,12 +12,12 @@ import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
 import org.springframework.util.CollectionUtils;
 
+import cn.net.firstblood.biz.common.notifier.EmailNotifier;
 import cn.net.firstblood.dal.dao.MemorialDayDao;
 import cn.net.firstblood.dal.model.MemorialDayDO;
 import cn.net.firstblood.dal.param.MemorialDayParam;
 import cn.net.firstblood.dal.param.PageParam;
 import cn.net.firstblood.framework.enums.WeChatMsgType;
-import cn.net.firstblood.framework.notifier.EmailNotifier;
 import cn.net.firstblood.framework.notifier.WeChatIM;
 import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.DateUtil;

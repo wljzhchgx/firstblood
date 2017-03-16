@@ -8,4 +8,5 @@
 	<sqlMap resource="META-INF/sqlmap/Config.xml" />
 	<sqlMap resource="META-INF/sqlmap/GrailRecord.xml" />
 	<sqlMap resource="META-INF/sqlmap/MemorialDay.xml" />
+	<sqlMap resource="META-INF/sqlmap/Frequency.xml" />
 </sqlMapConfig>

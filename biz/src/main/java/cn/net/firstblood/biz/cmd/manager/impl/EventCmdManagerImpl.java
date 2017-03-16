@@ -68,7 +68,7 @@ public class EventCmdManagerImpl implements CmdManager {
 			}
 			MemorialDayDO memorialDayDO = new MemorialDayDO();
 			memorialDayDO.setSubject(contentArray[0]);
-			memorialDayDO.setContent(contentArray[1]);
+			memorialDayDO.setContent(contentArray[1]+" ["+DateUtil.format(new Date())+"]");
 //			memorialDayDO.setGroupCode(groupCode);
 			memorialDayDO.setDate(DateUtil.parseDate(dateStr, "yyyyMMdd"));
 			memorialDayDO.setKeyWord(OPT_KEYWORD.get(contentArray[3]).toString());
@@ -124,7 +124,7 @@ public class EventCmdManagerImpl implements CmdManager {
 			}
 			MemorialDayDO mDay4update = new MemorialDayDO();
 			mDay4update.setId(mDay.getId());
-			mDay4update.setContent(mDay.getContent()+"\n"+contentArray[1]);
+			mDay4update.setContent(mDay.getContent()+"\n"+contentArray[1]+" ["+DateUtil.format(new Date())+"]");
 			if(memorialDayDao.update(mDay4update) == 1){
 				return "追加成功";
 			}

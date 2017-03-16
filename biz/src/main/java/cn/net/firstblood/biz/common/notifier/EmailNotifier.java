@@ -2,12 +2,14 @@
  * mybank.com Inc.
  * Copyright (c) 2014-2017 All Rights Reserved.
  */
-package cn.net.firstblood.framework.notifier;
+package cn.net.firstblood.biz.common.notifier;
 
 import java.util.Date;
 
 import org.apache.commons.mail.HtmlEmail;
 
+import cn.net.firstblood.dal.dao.FrequencyDao;
+import cn.net.firstblood.dal.enums.FrequencyBizType;
 import cn.net.firstblood.framework.model.FBConfigPO;
 import cn.net.firstblood.framework.util.BeanUtil;
 import cn.net.firstblood.framework.util.DateUtil;
@@ -18,13 +20,13 @@ import cn.net.firstblood.framework.util.LoggerUtil;
  * @version $Id: EmailNotifier.java, v 0.1 2017年2月23日 下午7:28:17 gangxiang.chengx Exp $
  */
 public class EmailNotifier {
-	private static int count = 0;
 	
 	public static synchronized void notify(String toAddress,String subject,String content){
-		if(count>50){
+		FrequencyDao frequencyDao = BeanUtil.getNean("frequencyDao");
+		if(!frequencyDao.addOneTimeByUkKey(FrequencyBizType.EMAIL_TOTAL_DAY, null)){
 			LoggerUtil.COMMON.warn("发送邮件超过上限 不再发送");
-			return;
 		}
+		
 		try{
 		// 创建邮件渠道
 		HtmlEmail htmlEmail = new HtmlEmail();
@@ -49,14 +51,11 @@ public class EmailNotifier {
 		// 要发送的信息
 		htmlEmail.setMsg(content+"</br>["+DateUtil.format(new Date())+"]");
 
-		LoggerUtil.COMMON.info("htmlEmail.send result[count:"+count+"]"+htmlEmail.send());
+		LoggerUtil.COMMON.info("htmlEmail.send result:"+htmlEmail.send());
 		} catch (Exception e) {
-			LoggerUtil.COMMON.error("发送邮件消息异常[count"+count+"]",e);
-		}finally{
-			count ++;
+			LoggerUtil.COMMON.error("发送邮件消息异常",e);
 		}
 		
 	}
-
 	
 }

@@ -14,5 +14,5 @@
 	<bean id="configDao"                 		class="cn.net.firstblood.dal.dao.impl.ConfigDaoImpl"/>
 	<bean id="grailRecordDao"                 	class="cn.net.firstblood.dal.dao.impl.GrailRecordDaoImpl"/>
 	<bean id="memorialDayDao"                 	class="cn.net.firstblood.dal.dao.impl.MemorialDayDaoImpl"/>
-	
+	<bean id="frequencyDao"                 	class="cn.net.firstblood.dal.dao.impl.FrequencyDaoImpl"/>
 </beans>
